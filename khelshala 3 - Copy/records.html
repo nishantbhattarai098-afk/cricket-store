@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Nepal Cricket — Legacy & Legends</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* --- 1. CORE VARIABLES (NPL THEME) --- */
+:root {
+  --primary: #dc143c; /* NPL Red */
+  --primary-dark: #b01030;
+  --secondary: #003399; /* NPL Blue */
+  --gold: #ffd700;
+  --dark: #050505;
+  --card-bg: #121212;
+  --text: #ffffff;
+  --text-muted: #a0a0a0;
+  --border: rgba(255,255,255,0.1);
+  --shadow-lg: 0 20px 50px rgba(0,0,0,0.6);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; scroll-behavior: smooth; }
+
+body { background-color: var(--dark); color: var(--text); overflow-x: hidden; }
+
+h1, h2, h3, h4, .logo-text { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+
+/* --- 2. NAVBAR (MATCHING NPL STYLE) --- */
+nav {
+    position: fixed; width: 100%; top: 0; left: 0; padding: 15px 5%;
+    background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px);
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 1000; border-bottom: 1px solid var(--border);
+    height: 80px;
+}
+
+.brand { font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; color: #fff; text-transform: uppercase; }
+.brand span { color: var(--primary); text-shadow: 0 0 10px rgba(220, 20, 60, 0.6); }
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { color: #ccc; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: 0.3s; position: relative; }
+.nav-links a:hover { color: var(--primary); text-shadow: 0 0 8px rgba(255,255,255,0.4); }
+.nav-links a::after { content:''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: linear-gradient(90deg, var(--primary), var(--gold)); transition: 0.3s; }
+.nav-links a:hover::after { width: 100%; }
+
+.hamburger { display: none; font-size: 1.5rem; color: #fff; cursor: pointer; }
+
+/* --- 3. HERO SECTION --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+
+.site-header {
+  margin-top: 100px; /* Offset for fixed nav */
+  margin-bottom: 80px; border-radius: 20px;
+  overflow: hidden; position: relative; box-shadow: var(--shadow-lg);
+  height: 550px; border: 1px solid #222;
+}
+.header-img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 0.8s ease; filter: brightness(0.8);
+}
+.site-header:hover .header-img { transform: scale(1.05); filter: brightness(0.6); }
+
+.header-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--dark), transparent 80%);
+  display: flex; flex-direction: column; justify-content: flex-end;
+  text-align: left; padding: 50px; color: #fff;
+}
+.header-overlay h1 { font-size: 4rem; font-weight: 900; margin-bottom: 10px; text-shadow: 0 5px 20px rgba(0,0,0,0.8); }
+.header-overlay p { font-size: 1.3rem; max-width: 700px; color: #ddd; letter-spacing: 1px; }
+
+/* --- 4. SECTION TITLES --- */
+.section-title {
+  text-align: center; margin-bottom: 80px; font-size: 3rem; font-weight: 900; 
+  color: #fff; position: relative; padding-bottom: 15px;
+}
+.section-title::after {
+  content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 100px; height: 4px; background: var(--primary); border-radius: 2px;
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* --- 5. TIMELINE (DARK MODE) --- */
+.timeline { position: relative; padding: 40px 0; margin-bottom: 80px; }
+.timeline::before {
+  content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+  background: #333; transform: translateX(-50%);
+}
+.item {
+  position: relative; width: 50%; padding: 0 40px; margin-bottom: 60px;
+  opacity: 0; transform: translateY(30px); transition: all 0.6s ease;
+}
+.item.visible { opacity: 1; transform: translateY(0); }
+.item.left { left: 0; text-align: right; }
+.item.right { left: 50%; }
+.item.right .card { flex-direction: row-reverse; }
+
+/* Timeline Dot */
+.item::after {
+  content: ''; position: absolute; top: 25px; width: 16px; height: 16px;
+  background: var(--dark); border: 2px solid var(--gold); border-radius: 50%;
+  box-shadow: 0 0 10px var(--gold); z-index: 10;
+}
+.item.left::after { right: -9px; }
+.item.right::after { left: -9px; }
+
+.item .card {
+  background: var(--card-bg); border-radius: 12px; padding: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 25px;
+  transition: 0.3s; border: 1px solid #222;
+}
+.item .card:hover { transform: translateY(-5px); border-color: var(--primary); box-shadow: 0 10px 40px rgba(220, 20, 60, 0.15); }
+
+.item img { 
+    width: 150px; height: 110px; border-radius: 8px; object-fit: cover; 
+    flex-shrink: 0; cursor: pointer; border: 1px solid #333; 
+}
+
+.item .meta .year { color: var(--gold); font-weight: 800; font-size: 2.5rem; line-height: 1; margin-bottom: 5px; text-shadow: 0 0 10px rgba(255, 215, 0, 0.3); }
+.item .meta .title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+.item .meta .desc { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+
+/* --- 6. PLAYERS GRID (DARK MODE) --- */
+.players-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px; padding: 0 20px;
+}
+.player-card {
+  background: var(--card-bg); border-radius: 15px; overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #222;
+  transition: all 0.4s ease; position: relative; opacity: 0; transform: translateY(30px);
+}
+.player-card.visible { opacity: 1; transform: translateY(0); }
+.player-card:hover { transform: translateY(-10px); border-color: var(--secondary); box-shadow: 0 20px 50px rgba(0, 51, 153, 0.2); }
+
+.player-img-box { height: 350px; width: 100%; overflow: hidden; position: relative; }
+.player-img-box img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top;
+  transition: transform 0.5s ease; filter: grayscale(20%);
+}
+.player-card:hover .player-img-box img { transform: scale(1.1); filter: grayscale(0%); }
+.player-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, var(--card-bg) 5%, transparent 60%);
+}
+
+.player-info { padding: 30px 25px; text-align: center; border-bottom: 3px solid var(--primary); }
+.player-name { font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 5px; }
+.player-desc { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 25px; min-height: 45px; }
+.player-stats {
+  display: flex; justify-content: center; gap: 30px; border-top: 1px solid #333; padding-top: 20px;
+}
+.stat-box span { display: block; font-size: 1.4rem; font-weight: 800; color: var(--gold); }
+.stat-box small { font-size: 0.8rem; color: #666; text-transform: uppercase; letter-spacing: 1px; }
+
+/* --- 7. FOOTER (MATCHING NPL) --- */
+footer { background: #000; color: #555; padding: 70px 0 0; margin-top: 100px; border-top: 1px solid #222; }
+.footer-container {
+  max-width: 1200px; margin: 0 auto; padding: 0 20px 50px;
+  display: grid; grid-template-columns: 2fr 1fr 1.5fr; gap: 50px;
+}
+.footer-col h3 { font-size: 1.2rem; margin-bottom: 25px; color: #fff; border-left: 3px solid var(--primary); padding-left: 10px; }
+.social-links a {
+  display: inline-flex; justify-content: center; align-items: center;
+  width: 45px; height: 45px; background: #111; color: #fff;
+  border-radius: 50%; margin-right: 10px; transition: 0.3s; border: 1px solid #333;
+}
+.social-links a:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
+.footer-links li { list-style: none; margin-bottom: 12px; }
+.footer-links a { text-decoration: none; color: #888; transition: 0.3s; font-size: 0.9rem; }
+.footer-links a:hover { color: var(--gold); padding-left: 5px; }
+.footer-bottom { background: #080808; padding: 25px; text-align: center; color: #444; font-size: 0.85rem; border-top: 1px solid #111; }
+
+/* --- MODAL --- */
+.modal {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.95); z-index: 2000;
+  display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px);
+}
+.modal.open { display: flex; }
+.modal img { max-height: 85vh; max-width: 90vw; border-radius: 12px; border: 2px solid var(--primary); box-shadow: 0 0 50px rgba(220, 20, 60, 0.3); }
+.modal-close { position: absolute; top: 30px; right: 30px; color: white; font-size: 3rem; cursor: pointer; transition: 0.3s; }
+.modal-close:hover { color: var(--primary); transform: rotate(90deg); }
+
+/* --- RESPONSIVE --- */
+@media(max-width:900px){
+  .nav-links { display: none; }
+  .hamburger { display: block; }
+  .header-overlay h1{font-size: 2.8rem;}
+  .timeline::before{left: 20px;}
+  .item { width: 100%; padding-left: 50px; padding-right: 0; text-align: left; }
+  .item.left, .item.right { left: 0; }
+  .item.left .card, .item.right .card { flex-direction: column; align-items: flex-start; }
+  .item.left .meta { text-align: left; }
+  .item::after { left: 11px; }
+  .item img { width: 100%; height: 180px; }
+  .footer-container { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="brand">Khel<span>shala</span></div>
+    <div class="nav-links">
+        <a href="FTD.html">Home</a>
+         <a href="news.html">News</a>
+        <a href="history.html">History</a>
+        <a href="records.html" style="color:var(--primary)">Records</a>
+        <a href="player.html">Players</a>
+        <a href="NPL.html">NPL</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="hamburger"><i class="fas fa-bars"></i></div>
+</nav>
+
+<main class="container">
+  <!-- HEADER / HERO -->
+  <header class="site-header">
+    <img src="https://republicaimg.nagariknewscdn.com/shared/web/uploads/media/6ocAVjvTXm5A97p9te2UEh48jlxVNUMLuDtEyURd.jpg" alt="Cricket Crowd Cheering" class="header-img">
+    <div class="header-overlay">
+      <h1>THE HIMALAYAN <span style="color:var(--primary)">LEGACY</span></h1>
+      <p>Chronicling the triumphs, the records, and the heroes that define Nepali Cricket.</p>
+    </div>
+  </header>
+
+  <!-- TIMELINE SECTION -->
+  <h2 class="section-title" id="timeline">Historic Landmarks</h2>
+  <section class="timeline" id="timeline-container"></section>
+
+  <!-- PLAYERS SECTION -->
+  <h2 class="section-title" id="players">Heroes of the Nation</h2>
+  <section class="players-grid" id="players-grid">
+    <!-- Players injected here via JS -->
+  </section>
+
+  <p style="text-align:center; color:#555; margin-top:50px; font-size:0.9rem;">
+    <i class="fas fa-info-circle"></i> Click on timeline images to view in full resolution.
+  </p>
+</main>
+
+<!-- IMAGE MODAL -->
+<div id="imgModal" class="modal">
+  <div class="modal-close" id="modalClose">&times;</div>
+  <img id="modalImg" src="" alt="Preview">
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-container">
+        <div class="footer-col">
+            <div class="brand" style="margin-bottom:20px; display:block;">Khel<span>shala</span></div>
+            <p>We are the digital home of Nepali Cricket. From the dusty pitches of local grounds to the floodlights of the TU Ground, we cover every moment.</p>
+            <div class="social-links" style="margin-top:25px;">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h3>Explore</h3>
+            <ul class="footer-links">
+                <li><a href="FTD.html">Home</a></li>
+                <li><a href="history.html">History</a></li>
+                <li><a href="records.html">Records</a></li>
+                <li><a href="player.html">Players</a></li>
+                <li><a href="NPL.html">NPL</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h3>Newsletter</h3>
+            <p style="margin-bottom:15px; color:#888;">Join 50,000+ fans. Get match updates directly.</p>
+            <div style="display:flex; gap:10px;">
+                <input type="email" placeholder="Your email..." style="flex:1; padding:12px; border-radius:6px; border:1px solid #333; background:#111; color:#fff; outline:none;">
+                <button style="padding:10px 25px; background:var(--primary); color:white; border:none; border-radius:6px; cursor:pointer; font-weight:700;">JOIN</button>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2025 Khelshala Nepal. Proudly made for the Rhinos.</p>
+    </div>
+</footer>
+
+<script>
+// --- DATA: Records ---
+const records = [
+  {year:'1996',title:'International Debut',desc:'Nepal played its first international match at the ACC Trophy in Malaysia.',img:'https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Nepal_cricket_team_logo.svg/1200px-Nepal_cricket_team_logo.svg.png'},
+  {year:'2014',title:'T20 World Cup Debut',desc:'A historic moment as Nepal defeated Hong Kong and Afghanistan in Bangladesh.',img:'https://p.imgci.com/db/PICTURES/CMS/183200/183291.jpg'},
+  {year:'2018',title:'ODI Status Achieved',desc:'Nepal secured ODI status for the first time after the World Cup Qualifiers.',img:'https://p.imgci.com/db/PICTURES/CMS/273300/273373.jpg'},
+  {year:'2019',title:'First ODI Century',desc:'Paras Khadka smashed 115* against UAE, becoming the first Nepali to score an ODI ton.',img:'https://p.imgci.com/db/PICTURES/CMS/285000/285038.jpg'},
+  {year:'2023',title:'World Record: 314/3',desc:'Nepal smashed the highest T20I total ever against Mongolia at the Asian Games.',img:'https://images.indianexpress.com/2023/09/Kushal-Malla.jpg'},
+  {year:'2023',title:'Fastest T20I Century',desc:'Kushal Malla broke the world record, scoring a century in just 34 balls.',img:'https://p.imgci.com/db/PICTURES/CMS/368800/368897.jpg'},
+  {year:'2023',title:'9-Ball Fifty',desc:'Dipendra Singh Airee broke Yuvraj Singh\'s record with a 9-ball half-century.',img:'https://wisden.com/wp-content/uploads/2023/09/Dipendra-Singh-Airee-e1695804365773.jpg'}
+];
+
+// --- DATA: Players ---
+const players = [
+  {
+    name: "Paras Khadka",
+    desc: "Former Captain who led Nepal from Division 5 to ODI status. First ODI centurion.",
+    img: "https://p.imgci.com/db/PICTURES/CMS/285000/285038.jpg",
+    stats: { label: "Matches", val: "250+" },
+    sub: { label: "Role", val: "Legend" }
+  },
+  {
+    name: "Sandeep Lamichhane",
+    desc: "The leg-spin wizard who took Nepal to the world, playing in IPL, BBL, and CPL.",
+    img: "https://p.imgci.com/db/PICTURES/CMS/339200/339234.jpg",
+    stats: { label: "Wickets", val: "200+" },
+    sub: { label: "Style", val: "Leg Spin" }
+  },
+  {
+    name: "Rohit Paudel",
+    desc: "Youngest male cricketer to score an international half-century. A calm leader.",
+    img: "https://p.imgci.com/db/PICTURES/CMS/335600/335661.jpg",
+    stats: { label: "Runs", val: "1500+" },
+    sub: { label: "Pos", val: "Captain" }
+  },
+  {
+    name: "Dipendra Singh Airee",
+    desc: "Holder of the fastest T20I fifty (9 balls). An electric fielder and finisher.",
+    img: "https://p.imgci.com/db/PICTURES/CMS/328700/328706.jpg",
+    stats: { label: "Strike Rate", val: "160+" },
+    sub: { label: "Best", val: "52 (10)" }
+  },
+  {
+    name: "Sompal Kami",
+    desc: "Nepal's premier fast bowler and a handy lower-order batsman.",
+    img: "https://p.imgci.com/db/PICTURES/CMS/328700/328704.jpg",
+    stats: { label: "Speed", val: "140kph" },
+    sub: { label: "Role", val: "Pacer" }
+  },
+  {
+    name: "Kushal Bhurtel",
+    desc: "Known for his aggressive starts. Scored 3 consecutive fifties in his debut T20I series.",
+    img: "https://p.imgci.com/db/PICTURES/CMS/319600/319623.jpg",
+    stats: { label: "Runs", val: "1000+" },
+    sub: { label: "Style", val: "Opener" }
+  }
+];
+
+// --- GENERATE TIMELINE ---
+const timelineContainer = document.getElementById('timeline-container');
+records.forEach((rec, i) => {
+  const side = i % 2 === 0 ? 'left' : 'right';
+  const html = `
+    <article class="item ${side}">
+      <div class="card">
+        <img src="${rec.img}" alt="${rec.title}">
+        <div class="meta">
+          <div class="year">${rec.year}</div>
+          <div class="title">${rec.title}</div>
+          <div class="desc">${rec.desc}</div>
+        </div>
+      </div>
+    </article>
+  `;
+  timelineContainer.innerHTML += html;
+});
+
+// --- GENERATE PLAYERS ---
+const playersGrid = document.getElementById('players-grid');
+players.forEach(p => {
+  const html = `
+    <div class="player-card">
+      <div class="player-img-box">
+        <img src="${p.img}" alt="${p.name}">
+        <div class="player-overlay"></div>
+      </div>
+      <div class="player-info">
+        <h3 class="player-name">${p.name}</h3>
+        <p class="player-desc">${p.desc}</p>
+        <div class="player-stats">
+          <div class="stat-box"><span>${p.stats.val}</span><small>${p.stats.label}</small></div>
+          <div class="stat-box"><span>${p.sub.val}</span><small>${p.sub.label}</small></div>
+        </div>
+      </div>
+    </div>
+  `;
+  playersGrid.innerHTML += html;
+});
+
+// --- SCROLL ANIMATIONS ---
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.item').forEach(el => observer.observe(el));
+document.querySelectorAll('.player-card').forEach(el => observer.observe(el));
+
+// --- MODAL LOGIC ---
+const modal = document.getElementById('imgModal');
+const modalImg = document.getElementById('modalImg');
+const modalClose = document.getElementById('modalClose');
+
+document.addEventListener('click', (e) => {
+  if (e.target.tagName === 'IMG' && e.target.closest('.item')) {
+    modal.classList.add('open');
+    modalImg.src = e.target.src;
+  }
+});
+modalClose.addEventListener('click', () => modal.classList.remove('open'));
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.classList.remove('open');
+});
+</script>
+</body>
+</html>

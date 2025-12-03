@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPL – Nepal Premier League | Official Hub</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+/* --- 1. CORE VARIABLES & RESET --- */
+:root {
+    --primary: #dc143c; /* NPL Red */
+    --secondary: #003399; /* NPL Blue */
+    --gold: #ffd700; /* Premium/Winner */
+    --dark: #050505;
+    --card-bg: #121212;
+    --text: #ffffff;
+    --text-muted: #a0a0a0;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; scroll-behavior: smooth; }
+
+body { background-color: var(--dark); color: var(--text); overflow-x: hidden; }
+
+h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
+
+/* --- 2. NAVBAR & MOBILE MENU --- */
+nav {
+    position: fixed; width: 100%; top: 0; padding: 15px 5%;
+    background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(15px);
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+nav h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; text-transform: uppercase; }
+nav h1 span { color: var(--primary); }
+
+.nav-links { display: flex; gap: 30px; }
+.nav-links a { color: #ccc; text-decoration: none; font-weight: 500; font-size: 0.9rem; transition: 0.3s; position: relative; }
+.nav-links a:hover { color: var(--primary); }
+.nav-links a::after { content:''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0; background: var(--primary); transition: 0.3s; }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-actions { display: flex; align-items: center; gap: 20px; }
+.cart-btn { position: relative; cursor: pointer; font-size: 1.3rem; transition: 0.3s; }
+.cart-btn:hover { color: var(--gold); }
+.cart-badge { position: absolute; top: -5px; right: -8px; background: var(--primary); color: white; font-size: 0.6rem; padding: 2px 5px; border-radius: 50%; font-weight: bold; }
+
+.hamburger { display: none; font-size: 1.5rem; cursor: pointer; }
+
+/* Mobile Menu */
+.mobile-menu {
+    position: fixed; top: 0; right: -100%; width: 280px; height: 100vh;
+    background: #111; z-index: 999; display: flex; flex-direction: column;
+    padding: 80px 30px; transition: 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.9); border-left: 1px solid #333;
+}
+.mobile-menu.active { right: 0; }
+.mobile-menu a { color: white; text-decoration: none; font-size: 1.4rem; margin-bottom: 25px; font-weight: 600; }
+.close-menu { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; color: var(--primary); }
+
+/* --- 3. HERO (TU GROUND NIGHT VIEW) --- */
+.hero {
+    height: 100vh;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), var(--dark)), 
+                url("https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80");
+    background-size: cover; background-position: center; background-attachment: fixed;
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+}
+.hero h2 { font-size: 4rem; font-weight: 900; text-transform: uppercase; text-shadow: 0 10px 30px rgba(0,0,0,0.8); line-height: 1.1; margin-bottom: 10px; }
+.hero h2 span { color: var(--primary); -webkit-text-stroke: 1px rgba(255,255,255,0.2); }
+.hero p { font-size: 1.4rem; color: #ddd; max-width: 700px; margin-bottom: 30px; letter-spacing: 1px; }
+
+.hero-btn { 
+    padding: 15px 40px; background: var(--primary); color: white; border: none; 
+    border-radius: 50px; cursor: pointer; font-weight: 700; font-size: 1rem; 
+    transition: 0.3s; box-shadow: 0 0 20px rgba(220, 20, 60, 0.4); text-transform: uppercase;
+}
+.hero-btn:hover { background: #b3002d; transform: translateY(-5px); box-shadow: 0 10px 30px rgba(220, 20, 60, 0.6); }
+
+/* --- 4. SECTION STYLES --- */
+section { padding: 80px 6%; }
+section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; text-transform: uppercase; letter-spacing: 2px; position: relative; }
+section h2::after { content:''; display: block; width: 60px; height: 4px; background: var(--primary); margin: 15px auto 0; border-radius: 2px; }
+
+/* --- 5. HISTORY --- */
+.history-container { display: flex; gap: 50px; align-items: center; margin-bottom: 60px; }
+.history-container:nth-child(even) { flex-direction: row-reverse; }
+.history-img-box { flex: 1; position: relative; }
+.history-img-box img { width: 100%; height: 350px; object-fit: cover; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid #333; transition: transform 0.4s; }
+.history-img-box:hover img { transform: scale(1.02); }
+.history-text { flex: 1; }
+.history-text h3 { color: var(--secondary); font-size: 2rem; margin-bottom: 20px; font-weight: 800; }
+.history-text p { color: var(--text-muted); line-height: 1.8; font-size: 1.05rem; text-align: justify; }
+
+/* --- 6. TEAMS TABLE --- */
+.team-table-container { overflow-x: auto; border-radius: 12px; box-shadow: 0 0 40px rgba(0,0,0,0.5); border: 1px solid #222; }
+.styled-table { width: 100%; border-collapse: collapse; min-width: 800px; background: var(--card-bg); }
+.styled-table thead tr { background-color: var(--secondary); color: #ffffff; text-align: left; }
+.styled-table th, .styled-table td { padding: 20px 25px; }
+.styled-table tbody tr { border-bottom: 1px solid #222; transition: 0.2s; }
+.styled-table tbody tr:nth-of-type(even) { background-color: #161616; }
+.styled-table tbody tr:hover { background-color: #1f1f1f; transform: scale(1.005); }
+.team-logo-cell { display: flex; align-items: center; gap: 15px; font-weight: 700; font-size: 1.1rem; }
+.team-logo-img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #444; object-fit: cover; }
+.squad-btn { padding: 8px 16px; background: transparent; border: 1px solid #555; color: #aaa; border-radius: 4px; cursor: pointer; transition: 0.3s; font-size: 0.8rem; }
+.squad-btn:hover { border-color: var(--primary); color: var(--primary); }
+
+/* --- 7. REGULAR STORE --- */
+.store-nav { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+.store-filter { padding: 10px 25px; background: #1a1a1a; border: 1px solid #333; color: #888; border-radius: 30px; cursor: pointer; transition: 0.3s; font-weight: 600; }
+.store-filter.active, .store-filter:hover { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 5px 15px rgba(220, 20, 60, 0.4); }
+.products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+.product-card { background: var(--card-bg); padding: 20px; border-radius: 15px; border: 1px solid #222; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
+.product-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
+.product-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; background: #000; }
+.product-card h4 { margin-bottom: 10px; font-size: 1.1rem; }
+.product-card .price { color: var(--primary); font-weight: 700; font-size: 1.2rem; display: block; margin-bottom: 15px; }
+.add-btn { width: 100%; padding: 12px; background: transparent; border: 1px solid var(--primary); color: white; cursor: pointer; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+.add-btn:hover { background: var(--primary); }
+
+/* --- 8. MEMORABILIA --- */
+.memorabilia-section { background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); border-top: 1px solid #333; border-bottom: 1px solid #333; }
+.memorabilia-section h2 { color: var(--gold); }
+.memorabilia-section h2::after { background: var(--gold); }
+.premium-card { background: #111; border: 1px solid #444; border-radius: 15px; overflow: hidden; position: relative; transition: 0.3s; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+.premium-card:hover { border-color: var(--gold); box-shadow: 0 0 30px rgba(255, 215, 0, 0.15); transform: translateY(-5px); }
+.premium-tag { position: absolute; top: 15px; right: 15px; background: var(--gold); color: black; font-weight: 800; font-size: 0.7rem; padding: 4px 10px; border-radius: 4px; text-transform: uppercase; z-index: 2; }
+.premium-img { width: 100%; height: 280px; object-fit: cover; opacity: 0.9; transition: 0.3s; }
+.premium-info { padding: 25px; text-align: center; position: relative; background: #141414; }
+.premium-price { color: var(--gold); font-size: 1.5rem; font-weight: 800; display: block; margin-bottom: 15px; }
+.premium-btn { width: 100%; padding: 12px; background: var(--gold); color: black; border: none; font-weight: 800; cursor: pointer; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+.premium-btn:hover { background: #e6c200; }
+
+/* --- 9. SCHEDULE --- */
+.fixtures-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+.match-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; border: 1px solid #222; display: flex; flex-direction: column; }
+.match-top { background: linear-gradient(to right, #111, #222); padding: 15px; text-align: center; font-size: 0.9rem; color: #888; border-bottom: 1px solid #333; }
+.match-body { padding: 30px 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 20px; }
+.team-name { font-weight: 700; font-size: 1.1rem; width: 40%; }
+.vs-badge { width: 40px; height: 40px; background: #333; color: #aaa; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: bold; font-style: italic; font-size: 0.8rem; }
+.match-action { padding: 20px; border-top: 1px solid #333; display: flex; justify-content: space-between; align-items: center; background: #151515; }
+.price-tag .old { text-decoration: line-through; color: #666; font-size: 0.8rem; margin-right: 5px; }
+.price-tag .new { color: white; font-weight: bold; font-size: 1.2rem; }
+.buy-ticket-btn { padding: 8px 20px; background: var(--secondary); color: white; border: none; border-radius: 4px; cursor: pointer; transition: 0.3s; }
+.buy-ticket-btn:hover { background: var(--primary); }
+
+/* --- 10. CART SIDEBAR --- */
+.cart-sidebar {
+    position: fixed; top: 0; right: -400px; width: 350px; height: 100%;
+    background: #0f0f0f; z-index: 2000; padding: 25px; transition: 0.4s ease;
+    display: flex; flex-direction: column; box-shadow: -10px 0 40px rgba(0,0,0,0.8); border-left: 1px solid #222;
+}
+.cart-sidebar.active { right: 0; }
+.cart-title { font-size: 1.5rem; border-bottom: 1px solid #333; padding-bottom: 15px; margin-bottom: 20px; display: flex; justify-content: space-between; }
+.cart-items { flex: 1; overflow-y: auto; }
+.cart-item-row { display: flex; justify-content: space-between; align-items: center; background: #1a1a1a; padding: 10px; margin-bottom: 10px; border-radius: 6px; border: 1px solid #333; }
+.checkout-box { border-top: 1px solid #333; padding-top: 20px; }
+.total-disp { font-size: 1.4rem; font-weight: 800; color: var(--gold); display: flex; justify-content: space-between; margin-bottom: 15px; }
+
+/* --- 11. MODALS (Checkout & Squad) --- */
+.modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 3000;
+    display: none; justify-content: center; align-items: center; backdrop-filter: blur(5px);
+}
+.modal-box {
+    background: #141414; width: 90%; max-width: 500px; padding: 30px;
+    border-radius: 15px; border: 1px solid var(--primary); box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    position: relative; animation: slideUp 0.3s;
+}
+@keyframes slideUp { from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);} }
+
+.close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.8rem; cursor: pointer; color: #888; transition: 0.3s; }
+.close-modal:hover { color: var(--primary); }
+
+/* Squad List Styles */
+.squad-list { list-style: none; margin-top: 20px; max-height: 400px; overflow-y: auto; }
+.squad-list li { padding: 12px; border-bottom: 1px solid #333; color: #ccc; display: flex; justify-content: space-between; }
+.squad-list li:first-child { color: var(--gold); font-weight: bold; font-size: 1.1rem; border-color: var(--gold); }
+.squad-list li:hover { background: #222; }
+
+/* Form Styles */
+.form-group { margin-bottom: 15px; }
+.form-group label { display: block; color: #ccc; margin-bottom: 8px; font-size: 0.9rem; }
+.form-control { width: 100%; padding: 12px; background: #0a0a0a; border: 1px solid #333; color: white; border-radius: 6px; font-family: inherit; }
+.form-control:focus { outline: none; border-color: var(--primary); }
+.checkout-btn { width: 100%; padding: 15px; background: var(--secondary); color: white; border: none; font-weight: bold; border-radius: 8px; cursor: pointer; transition: 0.3s; margin-top: 10px; }
+.checkout-btn:hover { background: var(--primary); }
+
+/* Responsive */
+@media(max-width: 768px) {
+    .nav-links { display: none; }
+    .hamburger { display: block; }
+    .hero h2 { font-size: 2.8rem; }
+    .history-container { flex-direction: column !important; }
+    .styled-table th, .styled-table td { padding: 15px 10px; font-size: 0.9rem; }
+    section { padding: 60px 4%; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <h1>NPL <span>OFFICIAL</span></h1>
+    <div class="nav-links">
+        <a href="FTD.html">Home</a>
+         <a href="news.html">News</a>
+        <a href="history.html">History</a>
+        <a href="records.html">Records</a>
+        <a href="player.html">Players</a>
+        <a href="NPL.html" style="color:var(--primary)">NPL</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <div class="cart-btn" onclick="toggleCart()">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartBadge">0</span>
+        </div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+    </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <span class="close-menu" onclick="toggleMenu()">&times;</span>
+    <a href="#history" onclick="toggleMenu()">History</a>
+    <a href="#teams" onclick="toggleMenu()">Teams</a>
+    <a href="#store" onclick="toggleMenu()">Store</a>
+    <a href="#memorabilia" onclick="toggleMenu()">Premium</a>
+    <a href="#schedule" onclick="toggleMenu()">Tickets</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+    <h2>Nepal Premier <span>League</span></h2>
+    <p>Passion. Power. Pride. Experience cricket under the floodlights at the home of Nepali Cricket.</p>
+    <button class="hero-btn" onclick="document.getElementById('schedule').scrollIntoView()">Buy Tickets Now</button>
+</section>
+
+<!-- HISTORY SECTION -->
+<section id="history">
+    <h2>The <span>Legacy</span></h2>
+    
+    <div class="history-container">
+        <div class="history-img-box">
+            <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=800&q=80" alt="Cricket Stadium">
+        </div>
+        <div class="history-text">
+            <h3>A New Era of Cricket</h3>
+            <p>The Nepal Premier League (NPL) was born from a dream to see Nepali cricket dominate the global stage. What started as a local initiative has now transformed into a cricketing carnival that halts the nation. Thousands flock to the TU Ground, creating an atmosphere that rivals the best in the world.</p>
+        </div>
+    </div>
+
+    <div class="history-container">
+        <div class="history-img-box">
+            <img src="https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?auto=format&fit=crop&w=800&q=80" alt="Fans Cheering">
+        </div>
+        <div class="history-text">
+            <h3>Uniting the Nation</h3>
+            <p>Eight teams, one passion. From the plains of Biratnagar to the historic temples of Kathmandu, NPL brings together diverse cultures under one banner. It's not just a game; it's an emotion that runs through the veins of every Nepali, celebrating victory, resilience, and unity.</p>
+        </div>
+    </div>
+</section>
+
+<!-- TEAMS TABLE SECTION -->
+<section id="teams">
+    <h2>Participating <span>Teams</span></h2>
+    <div class="team-table-container">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Team Name</th>
+                    <th>Region</th>
+                    <th>Marquee Player</th>
+                    <th>Squad</th>
+                </tr>
+            </thead>
+            <tbody id="teamsBody">
+                <!-- JS will populate -->
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- STORE SECTION -->
+<section id="store">
+    <h2>Official <span>Fan Gear</span></h2>
+    <div class="store-nav">
+        <button class="store-filter active" onclick="filterStore('jersey')">Jerseys</button>
+        <button class="store-filter" onclick="filterStore('cap')">Caps</button>
+        <button class="store-filter" onclick="filterStore('hoodie')">Hoodies</button>
+    </div>
+    <div class="products-grid" id="regularStoreGrid">
+        <!-- JS will populate -->
+    </div>
+</section>
+
+<!-- EXCLUSIVE MEMORABILIA SECTION -->
+<section id="memorabilia" class="memorabilia-section">
+    <h2>Exclusive <span>Memorabilia</span></h2>
+    <p style="text-align:center; color:#888; margin-bottom:40px;">Own a piece of history. Authenticated match-used & signed gear.</p>
+    <div class="products-grid">
+        <div class="premium-card">
+            <div class="premium-tag">1 of 1</div>
+            <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80" class="premium-img" alt="Bat">
+            <div class="premium-info">
+                <h3>Sandeep Lamichhane Signed Bat</h3>
+                <p>Match used bat from Season 1 Final.</p>
+                <span class="premium-price">Rs. 50,000</span>
+                <button class="premium-btn" onclick="addToCart(901, 'Sandeep Signed Bat', 50000)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="premium-card">
+            <div class="premium-tag">Limited Edition</div>
+            <img src="https://images.unsplash.com/photo-1577212017184-80cc25895085?auto=format&fit=crop&w=600&q=80" class="premium-img" alt="Jersey">
+            <div class="premium-info">
+                <h3>Paras Khadka Signed Jersey</h3>
+                <p>Framed retro jersey signed by the legend.</p>
+                <span class="premium-price">Rs. 35,000</span>
+                <button class="premium-btn" onclick="addToCart(902, 'Paras Signed Jersey', 35000)">Add to Cart</button>
+            </div>
+        </div>
+        <div class="premium-card">
+            <div class="premium-tag">Rare Find</div>
+            <img src="https://images.unsplash.com/photo-1531415074968-036ba1b575da?auto=format&fit=crop&w=600&q=80" class="premium-img" alt="Ball">
+            <div class="premium-info">
+                <h3>Match Ball - First Hat-trick</h3>
+                <p>Official ball from the first ever NPL hat-trick.</p>
+                <span class="premium-price">Rs. 25,000</span>
+                <button class="premium-btn" onclick="addToCart(903, 'First Hat-trick Ball', 25000)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SCHEDULE & TICKETS -->
+<section id="schedule">
+    <h2>Match <span>Schedule</span></h2>
+    <p style="text-align:center; color:#aaa; margin-bottom:30px;">10% Discount automatically applied on Semi-Finals & Finals!</p>
+    <div class="fixtures-grid" id="scheduleGrid">
+        <!-- JS will populate -->
+    </div>
+</section>
+
+<!-- CART SIDEBAR -->
+<div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-title">
+        <span>Your Cart</span>
+        <span style="cursor:pointer" onclick="toggleCart()">&times;</span>
+    </div>
+    <div class="cart-items" id="cartItems">
+        <p style="text-align:center; color:#555; margin-top:30px;">Your cart is empty.</p>
+    </div>
+    <div class="checkout-box">
+        <div class="total-disp">
+            <span>Total:</span>
+            <span id="cartTotalDisplay">Rs. 0</span>
+        </div>
+        <button class="hero-btn" style="width:100%; border-radius:10px;" onclick="openCheckout()">Checkout</button>
+    </div>
+</div>
+
+<!-- SQUAD MODAL (View Players) -->
+<div class="modal-overlay" id="squadModal">
+    <div class="modal-box">
+        <span class="close-modal" onclick="closeSquad()">&times;</span>
+        <h3 id="squadTitle" style="color: var(--primary); font-size: 1.5rem;">Team Squad</h3>
+        <ul class="squad-list" id="squadList">
+            <!-- Players injected here -->
+        </ul>
+    </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+    <div class="modal-box">
+        <span class="close-modal" onclick="closeCheckout()">&times;</span>
+        <h3 style="color: var(--primary); font-size: 1.5rem; margin-bottom:20px;">Secure Checkout</h3>
+        
+        <form onsubmit="processOrder(event)">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" class="form-control" required placeholder="Ram Bahadur">
+            </div>
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" class="form-control" required placeholder="ram@example.com">
+            </div>
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="tel" class="form-control" required placeholder="98XXXXXXXX">
+            </div>
+            <div class="form-group">
+                <label>Delivery Address</label>
+                <input type="text" class="form-control" required placeholder="Street, City, Province">
+            </div>
+            <div class="form-group">
+                <label>Payment Method</label>
+                <select class="form-control" required>
+                    <option value="" disabled selected>Select Payment Partner</option>
+                    <option value="esewa">eSewa Mobile Wallet</option>
+                    <option value="khalti">Khalti Digital Wallet</option>
+                    <option value="ime">IME Pay</option>
+                    <option value="connect">ConnectIPS</option>
+                    <option value="cod">Cash on Delivery</option>
+                </select>
+            </div>
+            <div style="margin-top:20px; border-top:1px solid #333; padding-top:10px;">
+                <div style="display:flex; justify-content:space-between; font-weight:bold; font-size:1.1rem; color:var(--gold);">
+                    <span>Total Amount:</span>
+                    <span id="checkoutTotal">Rs. 0</span>
+                </div>
+            </div>
+            <button type="submit" class="checkout-btn">Confirm Order</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    /* --- DATASETS --- */
+    const teams = [
+        { name: "Biratnagar Kings", region: "Koshi", marquee: "Sandeep Lamichhane", color: "800080" },
+        { name: "Chitwan Rhinos", region: "Bagmati", marquee: "Kushal Malla", color: "006400" },
+        { name: "Janakpur Bolts", region: "Madhesh", marquee: "Aasif Sheikh", color: "ffa500" },
+        { name: "Karnali Yaks", region: "Karnali", marquee: "Sompal Kami", color: "00008b" },
+        { name: "Kathmandu Gurkhas", region: "Kathmandu", marquee: "Karan KC", color: "dc143c" },
+        { name: "Lumbini Lions", region: "Lumbini", marquee: "Rohit Paudel", color: "ffd700" },
+        { name: "Pokhara Avengers", region: "Gandaki", marquee: "Kushal Bhurtel", color: "8b0000" },
+        { name: "Sudurpaschim Royals", region: "Far West", marquee: "Dipendra Singh Airee", color: "00ced1" }
+    ];
+
+    // REALISTIC SQUAD DATA
+    const squadsData = {
+        "Biratnagar Kings": ["Sandeep Lamichhane (C)", "Martin Guptill (Overseas)", "Lokesh Bam", "Pratish GC", "Bashir Ahmed", "Jitendra Mukhiya", "Rajesh Pulami", "Subash Ayer"],
+        "Chitwan Rhinos": ["Kushal Malla (C)", "Rohan Mustafa (Overseas)", "Sharad Vesawkar", "Bipul Sharma", "Rijan Dhakal", "Santosh Karki", "Dipesh Besta", "Amar Singh Routela"],
+        "Janakpur Bolts": ["Aasif Sheikh (C)", "Lahiru Milantha (Overseas)", "Kishore Mahato", "Hari Shankar Shah", "Anil Sah", "Jitendra Sah", "Sher Malla", "Samiullah Shinwari"],
+        "Karnali Yaks": ["Sompal Kami (C)", "Gulshan Jha", "Dev Khanal", "Nandan Yadav", "Arjun Gharti", "Mausam Dhakal", "Rit Gautam", "Bipin Rawal"],
+        "Kathmandu Gurkhas": ["Karan KC (C)", "Michael Levitt (Overseas)", "Bhim Sharki", "Sahab Alam", "Rashid Khan", "Krishna Karki", "Sumit Maharjan", "Raju Rijal"],
+        "Lumbini Lions": ["Rohit Paudel (C)", "Sundeep Jora", "Bibek Yadav", "Abinash Bohara", "Arjun Saud", "Kamal Singh Airee", "Sagar Pun", "Durgesh Gupta"],
+        "Pokhara Avengers": ["Kushal Bhurtel (C)", "Sagar Dhakal", "Akash Chand", "Dilip Nath", "Sunil Dhamala", "Bipin Khatri", "Narayan Joshi", "Amrit Bhattarai"],
+        "Sudurpaschim Royals": ["Dipendra Singh Airee (C)", "Binod Bhandari", "Bhojraj Bhatta", "Amit Shrestha", "Gajendra Bohara", "Naren Saud", "Khadak Bohara", "Ishant Pandey"]
+    };
+
+    const matches = [
+        { id: 101, type: "League", t1: "Biratnagar", t2: "Janakpur", date: "Dec 10", price: 300 },
+        { id: 102, type: "League", t1: "Kathmandu", t2: "Pokhara", date: "Dec 11", price: 300 },
+        { id: 103, type: "League", t1: "Lumbini", t2: "Karnali", date: "Dec 12", price: 300 },
+        { id: 104, type: "Semi-Final", t1: "TBD", t2: "TBD", date: "Dec 25", price: 1000 },
+        { id: 105, type: "Final", t1: "Finalist 1", t2: "Finalist 2", date: "Dec 30", price: 2000 }
+    ];
+
+    /* --- INIT --- */
+    window.onload = function() {
+        loadTeams();
+        filterStore('jersey');
+        loadSchedule();
+    };
+
+    /* --- TEAMS & SQUAD LOGIC --- */
+    function loadTeams() {
+        const tbody = document.getElementById('teamsBody');
+        teams.forEach(t => {
+            const logoUrl = `https://ui-avatars.com/api/?name=${t.name.split(' ')[0]}&background=${t.color}&color=fff&size=100`;
+            const row = `
+                <tr>
+                    <td class="team-logo-cell">
+                        <img src="${logoUrl}" class="team-logo-img" alt="logo">
+                        ${t.name}
+                    </td>
+                    <td>${t.region}</td>
+                    <td>${t.marquee}</td>
+                    <td><button class="squad-btn" onclick="openSquadModal('${t.name}')">View Players</button></td>
+                </tr>
+            `;
+            tbody.innerHTML += row;
+        });
+    }
+
+    function openSquadModal(teamName) {
+        const modal = document.getElementById('squadModal');
+        const list = document.getElementById('squadList');
+        const title = document.getElementById('squadTitle');
+        
+        title.innerText = teamName + " Squad";
+        list.innerHTML = '';
+        
+        const players = squadsData[teamName] || ["Squad details coming soon..."];
+        
+        players.forEach(player => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${player}</span> <i class="fas fa-cricket"></i>`;
+            list.appendChild(li);
+        });
+        
+        modal.style.display = 'flex';
+    }
+
+    function closeSquad() { document.getElementById('squadModal').style.display = 'none'; }
+
+    /* --- CHECKOUT LOGIC --- */
+    function openCheckout() {
+        if(cart.length === 0) {
+            alert("Your cart is empty! Add items first.");
+            return;
+        }
+        toggleCart(); // Close sidebar
+        
+        // Update total in checkout
+        let total = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+        document.getElementById('checkoutTotal').innerText = `Rs. ${total.toLocaleString()}`;
+        
+        document.getElementById('checkoutModal').style.display = 'flex';
+    }
+
+    function closeCheckout() { document.getElementById('checkoutModal').style.display = 'none'; }
+
+    function processOrder(e) {
+        e.preventDefault();
+        const btn = document.querySelector('.checkout-btn');
+        const originalText = btn.innerText;
+        
+        btn.innerText = "Processing Payment...";
+        btn.style.opacity = "0.7";
+        
+        setTimeout(() => {
+            alert("Order Successful!\n\nThank you for supporting NPL. You will receive an email confirmation shortly.");
+            cart = [];
+            updateCartUI();
+            closeCheckout();
+            btn.innerText = originalText;
+            btn.style.opacity = "1";
+        }, 2000);
+    }
+
+    /* --- STORE LOGIC --- */
+    function filterStore(category) {
+        document.querySelectorAll('.store-filter').forEach(btn => {
+            btn.classList.remove('active');
+            if(btn.innerText.toLowerCase().includes(category)) btn.classList.add('active');
+        });
+
+        const grid = document.getElementById('regularStoreGrid');
+        grid.innerHTML = '';
+        
+        let basePrice = 0;
+        if(category === 'jersey') basePrice = 2000;
+        if(category === 'cap') basePrice = 800;
+        if(category === 'hoodie') basePrice = 3000;
+
+        teams.forEach((t, i) => {
+            const prodName = `${t.name} ${category.charAt(0).toUpperCase() + category.slice(1)}`;
+            const imgUrl = `https://ui-avatars.com/api/?name=${t.name.split(' ')[0]}+${category}&background=${t.color}&color=fff&size=300`;
+            
+            const card = document.createElement('div');
+            card.className = 'product-card';
+            card.innerHTML = `
+                <img src="${imgUrl}" alt="${prodName}">
+                <h4>${prodName}</h4>
+                <span class="price">Rs. ${basePrice}</span>
+                <button class="add-btn" onclick="addToCart(${i+100}, '${prodName}', ${basePrice})">Add to Cart</button>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    /* --- SCHEDULE LOGIC --- */
+    function loadSchedule() {
+        const grid = document.getElementById('scheduleGrid');
+        matches.forEach(m => {
+            let displayPrice = `Rs. ${m.price}`;
+            let finalPrice = m.price;
+            let discountHtml = '';
+
+            if(m.type === 'Semi-Final' || m.type === 'Final') {
+                finalPrice = Math.floor(m.price * 0.9);
+                displayPrice = `<span class="old">Rs. ${m.price}</span> <span class="new">Rs. ${finalPrice}</span>`;
+                discountHtml = `<span style="position:absolute; top:10px; right:10px; background:gold; color:black; font-size:0.7rem; font-weight:bold; padding:2px 6px; border-radius:4px;">10% OFF</span>`;
+            }
+
+            const card = document.createElement('div');
+            card.className = 'match-card';
+            card.style.position = 'relative';
+            card.innerHTML = `
+                ${discountHtml}
+                <div class="match-top">${m.date} | ${m.type}</div>
+                <div class="match-body">
+                    <div class="team-name" style="text-align:right">${m.t1}</div>
+                    <div class="vs-badge">VS</div>
+                    <div class="team-name" style="text-align:left">${m.t2}</div>
+                </div>
+                <div class="match-action">
+                    <div class="price-tag">${displayPrice}</div>
+                    <button class="buy-ticket-btn" onclick="addToCart(${m.id}, '${m.t1} vs ${m.t2} Ticket', ${finalPrice})">Book</button>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    /* --- CART SYSTEM --- */
+    let cart = [];
+    const sidebar = document.getElementById('cartSidebar');
+    const badge = document.getElementById('cartBadge');
+
+    function toggleCart() { sidebar.classList.toggle('active'); }
+    function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+
+    function addToCart(id, name, price) {
+        const existing = cart.find(i => i.id === id);
+        if(existing) existing.qty++;
+        else cart.push({id, name, price, qty:1});
+        updateCartUI();
+        if(!sidebar.classList.contains('active')) sidebar.classList.add('active');
+    }
+
+    function removeFromCart(index) {
+        cart.splice(index, 1);
+        updateCartUI();
+    }
+
+    function updateCartUI() {
+        const container = document.getElementById('cartItems');
+        container.innerHTML = '';
+        let total = 0; 
+        let count = 0;
+
+        cart.forEach((item, index) => {
+            total += item.price * item.qty;
+            count += item.qty;
+            const div = document.createElement('div');
+            div.className = 'cart-item-row';
+            div.innerHTML = `
+                <div>
+                    <div style="font-weight:600; font-size:0.9rem;">${item.name}</div>
+                    <div style="color:#888; font-size:0.8rem;">Rs. ${item.price} x ${item.qty}</div>
+                </div>
+                <i class="fas fa-trash" style="color:#dc143c; cursor:pointer;" onclick="removeFromCart(${index})"></i>
+            `;
+            container.appendChild(div);
+        });
+
+        document.getElementById('cartTotalDisplay').innerText = `Rs. ${total.toLocaleString()}`;
+        badge.innerText = count;
+        
+        if(cart.length === 0) container.innerHTML = '<p style="text-align:center; color:#555; margin-top:30px;">Your cart is empty.</p>';
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KhelShala | The Heart of Nepal Cricket</title>
+<!-- Remix Icons -->
+<link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&family=Poppins:wght@300;400;600&family=Anton&display=swap" rel="stylesheet">
+
+<style>
+/* --- 1. CORE VARIABLES (CYBER-SPORT DARK THEME) --- */
+:root {
+    --primary: #E63946;       /* Vibrant Red */
+    --primary-glow: rgba(230, 57, 70, 0.6);
+    --secondary: #1D3557;     /* Deep Navy */
+    --accent: #FFD700;        /* Gold */
+    --bg-dark: #0a0a0a;       /* True Black */
+    --bg-card: #141414;       /* Card Grey */
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+    --text-main: #ffffff;
+    --text-gray: #a0a0a0;
+    --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* --- 2. GLOBAL RESET & SCROLLBAR --- */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif; }
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+h1, h2, h3 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; letter-spacing: -0.5px; }
+
+/* --- 3. UTILITY ANIMATIONS --- */
+@keyframes slideUpFade { from { opacity:0; transform:translateY(40px); } to { opacity:1; transform:translateY(0); } }
+@keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 var(--primary-glow); } 70% { box-shadow: 0 0 0 15px transparent; } 100% { box-shadow: 0 0 0 0 transparent; } }
+@keyframes kenBurns { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
+@keyframes scrollTicker { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+/* --- 4. TOP TICKER --- */
+.ticker-wrap {
+    background: var(--primary);
+    color: white;
+    font-size: 0.85rem;
+    font-weight: 600;
+    overflow: hidden;
+    white-space: nowrap;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--accent);
+}
+.ticker-content {
+    display: inline-block;
+    animation: scrollTicker 20s linear infinite;
+    padding-left: 100%;
+}
+.ticker-item { margin-right: 40px; }
+.ticker-item i { margin-right: 5px; color: var(--accent); }
+
+/* --- 5. GLASS NAVBAR --- */
+.navbar {
+    display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%;
+    background: rgba(10, 10, 10, 0.85); backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 1000;
+}
+
+.logo { 
+    font-size: 2rem; font-weight: 900; color: #fff; text-decoration: none; 
+    font-family: 'Anton', sans-serif; letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(230, 57, 70, 0.5);
+}
+.logo span { color: var(--primary); }
+
+.nav-links { display: flex; list-style: none; gap: 2.5rem; }
+.nav-links a { 
+    color: #ddd; text-decoration: none; font-weight: 600; font-size: 0.9rem; 
+    transition: var(--transition); position: relative; padding-bottom: 5px;
+}
+.nav-links a:hover { color: var(--accent); text-shadow: 0 0 10px var(--accent); }
+.nav-links a::after { 
+    content:''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; 
+    background: var(--primary); transition: var(--transition); 
+}
+.nav-links a:hover::after { width: 100%; }
+
+.mobile-toggle { display: none; font-size: 1.8rem; color: #fff; cursor: pointer; }
+
+/* --- 6. CINEMATIC HERO SLIDER --- */
+.hero-slider { position: relative; overflow: hidden; height: 650px; }
+
+.slide {
+    position: absolute; width: 100%; height: 100%; opacity: 0; 
+    transition: opacity 2s ease-in-out; 
+}
+.slide.active { opacity: 1; }
+
+/* The Image Zoom Effect */
+.slide img { 
+    width: 100%; height: 100%; object-fit: cover; 
+    animation: kenBurns 8s ease forwards; /* Smooth zoom */
+    filter: brightness(0.6) contrast(1.1);
+}
+
+.hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, var(--bg-dark) 10%, transparent 80%);
+    z-index: 1;
+}
+
+.hero-content {
+    position: absolute; bottom: 10%; left: 5%; z-index: 2;
+    max-width: 800px;
+}
+
+.badge {
+    background: var(--primary); color: white; padding: 5px 15px; 
+    border-radius: 50px; font-size: 0.85rem; font-weight: 700; 
+    text-transform: uppercase; letter-spacing: 1px;
+    box-shadow: 0 0 15px var(--primary-glow);
+    display: inline-block; margin-bottom: 15px;
+    animation: slideUpFade 0.8s ease backwards;
+}
+
+.hero-content h1 { 
+    font-size: 4rem; margin-bottom: 1rem; font-weight: 900; color: white; 
+    line-height: 1.1; text-transform: uppercase;
+    text-shadow: 2px 2px 0px #000;
+    animation: slideUpFade 0.8s 0.2s ease backwards;
+}
+
+.hero-content p { 
+    font-size: 1.2rem; color: #e0e0e0; max-width: 600px; margin-bottom: 2rem; 
+    animation: slideUpFade 0.8s 0.4s ease backwards;
+}
+
+.cta-btn {
+    padding: 12px 35px; background: transparent; border: 2px solid var(--accent);
+    color: var(--accent); font-weight: 700; text-transform: uppercase;
+    text-decoration: none; transition: var(--transition);
+    animation: slideUpFade 0.8s 0.6s ease backwards;
+    display: inline-block;
+}
+.cta-btn:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent); }
+
+/* --- 7. NEWS SECTION --- */
+.latest-news { padding: 5rem 5%; position: relative; }
+
+.section-header { margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: flex-end; }
+.section-header h2 { font-size: 3rem; color: #fff; line-height: 1; }
+.section-header h2 span { color: var(--primary); }
+.view-all { color: var(--text-gray); text-decoration: none; border-bottom: 1px solid var(--border); transition: 0.3s; }
+.view-all:hover { color: var(--accent); border-color: var(--accent); }
+
+.news-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 2.5rem; 
+}
+
+.news-card {
+    background: var(--bg-card); border-radius: 16px; overflow: hidden;
+    border: 1px solid var(--border); position: relative;
+    transition: var(--transition);
+}
+
+.news-card:hover { 
+    transform: translateY(-12px); 
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+    border-color: var(--primary);
+}
+
+/* Glowing Bottom Border on Hover */
+.news-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; width: 0%; height: 3px;
+    background: var(--gold); transition: var(--transition);
+}
+.news-card:hover::after { width: 100%; }
+
+.card-img { height: 220px; overflow: hidden; position: relative; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.news-card:hover .card-img img { transform: scale(1.1); }
+
+.card-content { padding: 1.5rem; }
+.meta { display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 10px; }
+.tag { color: var(--accent); font-weight: 700; text-transform: uppercase; }
+.date { color: #666; }
+
+.card-content h3 { 
+    font-size: 1.4rem; margin-bottom: 10px; line-height: 1.3; 
+    transition: 0.3s; color: #eee; 
+}
+.news-card:hover h3 { color: var(--primary); }
+.card-content p { color: #aaa; font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.6; }
+
+.read-link { 
+    color: #fff; font-size: 0.9rem; font-weight: 600; text-decoration: none; 
+    display: flex; align-items: center; gap: 5px; 
+}
+.read-link i { transition: 0.3s; color: var(--primary); }
+.read-link:hover i { transform: translateX(5px); color: var(--accent); }
+
+/* --- 8. NEWSLETTER (WOW FACTOR) --- */
+.newsletter {
+    margin: 5rem 5%; padding: 4rem; border-radius: 20px;
+    background: linear-gradient(135deg, #111, #000);
+    border: 1px solid #222; position: relative; overflow: hidden;
+    text-align: center;
+}
+
+/* Animated Glow Background */
+.newsletter::before {
+    content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background: radial-gradient(circle, rgba(220,20,60,0.15) 0%, transparent 70%);
+    animation: pulse 5s infinite linear;
+}
+
+.newsletter-content { position: relative; z-index: 2; max-width: 600px; margin: 0 auto; }
+.newsletter h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+.newsletter p { color: #999; margin-bottom: 2rem; }
+
+.input-group { 
+    display: flex; background: rgba(255,255,255,0.05); padding: 5px; 
+    border-radius: 50px; border: 1px solid var(--border); 
+}
+.input-group input {
+    flex: 1; background: transparent; border: none; padding: 15px 20px;
+    color: #fff; outline: none; font-size: 1rem;
+}
+.input-group button {
+    background: var(--primary); color: white; padding: 12px 30px;
+    border: none; border-radius: 50px; font-weight: 700; cursor: pointer;
+    transition: 0.3s;
+}
+.input-group button:hover { background: var(--accent); color: #000; }
+
+/* --- 9. FOOTER --- */
+footer { 
+    background: #000; border-top: 2px solid var(--primary); 
+    padding: 4rem 5% 1rem; color: #777; 
+}
+.footer-grid { 
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 3rem; margin-bottom: 3rem; 
+}
+.footer-col h3 { color: #fff; margin-bottom: 1.5rem; border-left: 3px solid var(--gold); padding-left: 10px; }
+.social-icons { display: flex; gap: 15px; margin-top: 15px; }
+.social-icons a {
+    width: 45px; height: 45px; border-radius: 50%; background: #111; border: 1px solid #333;
+    display: flex; align-items: center; justify-content: center; color: #fff;
+    text-decoration: none; transition: 0.3s;
+}
+.social-icons a:hover { background: var(--primary); border-color: var(--primary); transform: translateY(-3px); }
+
+.copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid #111; font-size: 0.8rem; }
+
+/* --- RESPONSIVE --- */
+@media(max-width: 768px) {
+    .navbar { padding: 1rem; }
+    .nav-links { 
+        position: fixed; top: 0; right: -100%; height: 100vh; width: 70%;
+        background: #000; flex-direction: column; justify-content: center; align-items: center;
+        transition: 0.4s; z-index: 1001; border-left: 1px solid var(--border);
+    }
+    .nav-links.active { right: 0; }
+    .mobile-toggle { display: block; z-index: 1002; }
+    
+    .hero-content h1 { font-size: 2.5rem; }
+    .section-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .newsletter { padding: 2rem; }
+    .input-group { flex-direction: column; background: transparent; border: none; gap: 10px; }
+    .input-group input { background: #1a1a1a; border-radius: 8px; border: 1px solid #333; }
+    .input-group button { width: 100%; border-radius: 8px; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOP TICKER -->
+<div class="ticker-wrap">
+    <div class="ticker-content">
+        <span class="ticker-item"><i class="ri-fire-fill"></i> NEPAL WINS T20 SERIES</span>
+        <span class="ticker-item"><i class="ri-trophy-line"></i> NPL 2025 AUCTION DATE ANNOUNCED</span>
+        <span class="ticker-item"><i class="ri-user-star-line"></i> SANDEEP LAMICHHANE TAKES 5 WICKETS</span>
+        <span class="ticker-item"><i class="ri-calendar-event-line"></i> NEXT MATCH: NEP VS CAN - DEC 10</span>
+    </div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="#" class="logo">KHEL<span>SHALA</span></a>
+    <ul class="nav-links">
+    
+        <a href="FTD.html">Home</a>
+        <li><a href="news.html" style="color:var(--primary)">news</a></li>
+        <a href="history.html">History</a>
+        <a href="records.html">Records</a>
+        <a href="player.html">Players</a>
+        <a href="NPL.html">NPL</a>
+        <a href="store.html">Store</a>
+        <a href="contact.html">Contact</a>
+    </ul>
+    <div class="mobile-toggle"><i class="ri-menu-4-line"></i></div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="hero-slider">
+    <!-- Overlay for better text readability -->
+    <div class="hero-overlay"></div>
+
+    <!-- Slide 1 -->
+    <div class="slide active">
+        <img src="https://assets-cdn.kathmandupost.com/uploads/source/news/2025/third-party/CANIMAGECELEBRATION-1760437478.jpg" alt="Victory">
+        <div class="hero-content">
+            <span class="badge">BREAKING NEWS</span>
+            <h1>Nepal Creates<br>History in T20</h1>
+            <p>A record-breaking performance at TU Ground secures a massive series win.</p>
+            <a href="#" class="cta-btn">Read Full Story</a>
+        </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide">
+        <img src="https://english.onlinekhabar.com/wp-content/uploads/2024/02/Nepal-Cricket-Team-1-1.jpg" alt="NPL">
+        <div class="hero-content">
+            <span class="badge" style="background:var(--secondary)">NPL 2025</span>
+            <h1>Kathmandu Gurkhas<br>Unveil New Kit</h1>
+            <p>The franchise reveals their stunning new jersey for the upcoming season.</p>
+            <a href="#" class="cta-btn">View Gallery</a>
+        </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide">
+        <img src="https://p1.img.cricbuzz.com/img/images/300/300/100/100435/nepal-cricket-team.jpg" alt="Player">
+        <div class="hero-content">
+            <span class="badge" style="background:var(--accent); color:black">PLAYER SPOTLIGHT</span>
+            <h1>Rohit Paudel's<br>Masterclass</h1>
+            <p>The skipper leads from the front with a magnificent century.</p>
+            <a href="#" class="cta-btn">Watch Highlights</a>
+        </div>
+    </div>
+</div>
+
+<!-- NEWS SECTION -->
+<section class="latest-news">
+    <div class="section-header">
+        <h2>Latest <span>Updates</span></h2>
+        <a href="#" class="view-all">View All News <i class="ri-arrow-right-line"></i></a>
+    </div>
+
+    <div class="news-grid">
+        <!-- Card 1 -->
+        <article class="news-card">
+            <div class="card-img">
+                <img src="https://assets-cdn.kathmandupost.com/uploads/source/news/2023/third-party/indubarma-1699535348.jpg" alt="News">
+            </div>
+            <div class="card-content">
+                <div class="meta">
+                    <span class="tag">WOMEN'S CRICKET</span>
+                    <span class="date">Dec 03, 2025</span>
+                </div>
+                <h3>Indu Barma leads Nepal to Asia Finals</h3>
+                <p>A captain's knock ensures the women's team reaches the big stage.</p>
+                <a href="#" class="read-link">Read More <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="news-card">
+            <div class="card-img">
+                <img src="https://www.cricnepal.com/wp-content/uploads/2022/11/Sandeep-Lamichhane-1.jpg" alt="News">
+            </div>
+            <div class="card-content">
+                <div class="meta">
+                    <span class="tag" style="color:var(--secondary)">MILESTONE</span>
+                    <span class="date">Dec 02, 2025</span>
+                </div>
+                <h3>Sandeep Reaches 100 ODI Wickets</h3>
+                <p>The spin wizard breaks the record for fastest to 100 wickets.</p>
+                <a href="#" class="read-link">Read More <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </article>
+
+        <!-- Card 3 -->
+        <article class="news-card">
+            <div class="card-img">
+                <img src="https://english.onlinekhabar.com/wp-content/uploads/2022/05/TU-Cricket-Ground-1.jpg" alt="News">
+            </div>
+            <div class="card-content">
+                <div class="meta">
+                    <span class="tag" style="color:var(--gold)">INFRASTRUCTURE</span>
+                    <span class="date">Dec 01, 2025</span>
+                </div>
+                <h3>TU Ground Floodlights Installed</h3>
+                <p>Historic moment as Kirtipur prepares for Day/Night matches.</p>
+                <a href="#" class="read-link">Read More <i class="ri-arrow-right-line"></i></a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter">
+    <div class="newsletter-content">
+        <h2><i class="ri-notification-3-fill" style="color:var(--accent)"></i> Never Miss a Ball</h2>
+        <p>Join 50,000+ fans. Get match schedules, exclusive store discounts, and breaking news directly to your inbox.</p>
+        <form id="newsletterForm">
+            <div class="input-group">
+                <input type="email" placeholder="Enter your email address..." required>
+                <button type="submit">SUBSCRIBE</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h3>About KhelShala</h3>
+            <p>The premium destination for Nepal Cricket. We bring you the passion, the stats, and the stories from the stadium to your screen.</p>
+            <div class="social-icons">
+                <a href="#"><i class="ri-facebook-fill"></i></a>
+                <a href="#"><i class="ri-twitter-x-fill"></i></a>
+                <a href="#"><i class="ri-instagram-line"></i></a>
+                <a href="#"><i class="ri-youtube-fill"></i></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+            <div class="quick-links">
+                <a href="#">Live Scores</a>
+                <a href="#">Points Table</a>
+                <a href="#">NPL Teams</a>
+                <a href="#">Official Merchandise</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h3>Contact</h3>
+            <div class="quick-links">
+                <a href="#"><i class="ri-mail-line"></i> press@khelshala.com</a>
+                <a href="#"><i class="ri-phone-line"></i> +977 9800000000</a>
+                <a href="#"><i class="ri-map-pin-line"></i> Kathmandu, Nepal</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>© 2025 KhelShala. All Rights Reserved. Made with <i class="ri-heart-fill" style="color:var(--primary)"></i> for Nepal Cricket.</p>
+    </div>
+</footer>
+
+<script>
+    // --- 1. MOBILE MENU ---
+    const menuBtn = document.querySelector('.mobile-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const icon = menuBtn.querySelector('i');
+
+    menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        if(navLinks.classList.contains('active')){
+            icon.classList.remove('ri-menu-4-line');
+            icon.classList.add('ri-close-large-line');
+        } else {
+            icon.classList.remove('ri-close-large-line');
+            icon.classList.add('ri-menu-4-line');
+        }
+    });
+
+    // --- 2. HERO SLIDER (3 Sec Transition) ---
+    const slides = document.querySelectorAll('.slide');
+    let currentSlide = 0;
+    const transitionTime = 2000; // CSS fade time
+    const stayTime = 5000; // Time on slide
+
+    function nextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }
+    
+    // Auto Scroll
+    setInterval(nextSlide, stayTime);
+
+    // --- 3. NEWSLETTER INTERACTION ---
+    document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const btn = this.querySelector('button');
+        const originalText = btn.innerText;
+        
+        btn.innerText = "SUBSCRIBED!";
+        btn.style.background = "#fff";
+        btn.style.color = "var(--primary)";
+        
+        setTimeout(() => {
+            alert("Welcome to the KhelShala Squad!");
+            this.reset();
+            btn.innerText = originalText;
+            btn.style.background = "";
+            btn.style.color = "";
+        }, 1000);
+    });
+</script>
+
+</body>
+</html>

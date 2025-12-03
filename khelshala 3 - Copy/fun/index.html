@@ -1,0 +1,777 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Khelshala — Cricket Accessories</title>
+  <meta name="description" content="Khelshala — Premium cricket gear, fast delivery, loyalty rewards and exclusive deals." />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+  <style>
+    :root{
+      --green-500:#22c55e;
+      --green-600:#16a34a;
+      --muted:#6b7280;
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --glass: rgba(255,255,255,0.7);
+      --radius:12px;
+      --shadow: 0 6px 20px rgba(16,24,40,0.08);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:'Inter',system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      background:linear-gradient(180deg,#f8fafc 0%, #ffffff 100%);
+      color:#051124;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+
+    /* NAV */
+    header.topbar{
+      position:sticky;top:0;z-index:60;
+      backdrop-filter: blur(6px);
+      background: rgba(255,255,255,0.75);
+      box-shadow: 0 2px 8px rgba(8,15,22,0.04);
+    }
+    .nav-inner{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:12px 20px}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:700;font-family:'Space Grotesk';font-size:20px}
+    .brand .k{color:var(--green-500)}
+    .nav-actions{display:flex;gap:12px;align-items:center}
+    .search{display:flex;align-items:center;background:#fff;padding:8px;border-radius:999px;box-shadow:var(--shadow)}
+    .search input{border:0;outline:none;padding:6px 8px;font-size:14px;background:transparent}
+    .icon-btn{background:transparent;border:0;padding:8px;border-radius:8px;cursor:pointer;font-size:18px}
+    .cart-badge{background:var(--green-500);color:#fff;padding:4px 8px;border-radius:999px;font-weight:600;font-size:13px;margin-left:6px}
+
+    /* HERO */
+    .hero{display:grid;grid-template-columns:1fr 480px;gap:28px;align-items:center;padding:40px 20px}
+    .hero-left h1{font-family:'Space Grotesk';font-size:34px;margin-bottom:12px;line-height:1.05}
+    .gradient-text{background:linear-gradient(90deg,var(--green-500),var(--green-600));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .hero-desc{color:var(--muted);margin-bottom:18px}
+    .hero-cta{display:flex;gap:12px;align-items:center}
+    .btn {padding:12px 20px;border-radius:999px;border:0;font-weight:600;cursor:pointer}
+    .btn-primary{background:linear-gradient(135deg,var(--green-500),var(--green-600));color:white;box-shadow:0 8px 24px rgba(22,163,74,0.18)}
+    .btn-outline{background:white;border:2px solid var(--green-500);color:var(--green-500)}
+    .hero-right{position:relative;padding:18px;background:linear-gradient(180deg,rgba(34,197,94,0.06),rgba(34,197,94,0.02));border-radius:16px;box-shadow:var(--shadow)}
+    .hero-product{display:flex;gap:12px;align-items:center}
+    .hero-product img{width:220px;border-radius:8px;box-shadow:0 10px 30px rgba(10,20,10,0.06)}
+    .hero-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;background:#fff;border:1px solid rgba(0,0,0,0.04);font-weight:600}
+
+    /* CATEGORIES */
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin:28px 0 12px}
+    .categories{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:14px}
+    .cat{background:var(--card);padding:18px;border-radius:12px;display:flex;flex-direction:column;align-items:center;gap:8px;box-shadow:var(--shadow);cursor:pointer;transition:transform .28s,box-shadow .28s}
+    .cat:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(16,24,40,0.08)}
+    .cat i{font-size:28px;color:var(--green-600)}
+
+    /* TRENDING SLIDER */
+    .slider-wrap{position:relative;margin-top:8px}
+    .slider{display:flex;gap:14px;padding:12px 6px;overflow:hidden}
+    .slide{min-width:220px;max-width:260px;background:var(--card);padding:12px;border-radius:12px;box-shadow:var(--shadow);position:relative;transition:transform .2s;flex-shrink:0}
+    .slide .imgbox{height:140px;border-radius:8px;overflow:hidden}
+    .discount{position:absolute;left:12px;top:12px;background:#ef4444;color:#fff;padding:6px 8px;border-radius:8px;font-weight:700;font-size:12px}
+    .toprated{position:absolute;right:12px;top:12px;background:#f59e0b;color:#fff;padding:6px 8px;border-radius:8px;font-weight:700;font-size:12px}
+    .slide h4{font-size:16px;margin:10px 0 6px}
+    .price{font-weight:700}
+    .slide .actions{display:flex;gap:8px;margin-top:8px}
+    .small{font-size:13px;color:var(--muted)}
+
+    /* DEALS & COUNTDOWN */
+    .deals{display:grid;grid-template-columns:1fr 320px;gap:16px;margin-top:22px}
+    .deal-card{background:var(--card);padding:16px;border-radius:12px;box-shadow:var(--shadow)}
+    .bundle{display:flex;gap:12px;align-items:center}
+    .countdown{display:flex;gap:8px;align-items:center;margin-top:10px}
+    .countdown .unit{background:#111;color:#fff;padding:10px 12px;border-radius:8px;font-weight:700}
+
+    /* WHY BUY */
+    .badges{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px}
+    .badge{background:var(--card);padding:12px 14px;border-radius:10px;display:flex;gap:10px;align-items:center;box-shadow:var(--shadow)}
+
+    /* BLOGS */
+    .blogs{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-top:14px}
+    .blog{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);transition:transform .28s}
+    .blog:hover{transform:translateY(-8px)}
+
+    /* PRODUCT MODAL */
+    .modal{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:18px;z-index:120}
+    .modal.open{display:flex}
+    .modal-card{width:min(980px,96%);background:var(--card);border-radius:12px;padding:18px;display:grid;grid-template-columns:1fr 420px;gap:18px;max-height:90vh;overflow:auto}
+    .gallery{display:flex;flex-direction:column;gap:8px}
+    .thumbs{display:flex;gap:8px}
+    .thumbs img{width:64px;height:64px;object-fit:cover;border-radius:8px;cursor:pointer;border:2px solid transparent}
+    .thumbs img.active{border-color:var(--green-500)}
+    .video-placeholder{height:220px;background:#111;color:#fff;display:flex;align-items:center;justify-content:center;border-radius:8px}
+    .specs table{width:100%;border-collapse:collapse}
+    .specs td{padding:8px;border-bottom:1px dashed rgba(0,0,0,0.06)}
+    .accordion{margin-top:8px}
+    .accordion .acc-head{display:flex;justify-content:space-between;align-items:center;padding:10px;background:#f3f4f6;border-radius:8px;cursor:pointer}
+    .acc-body{padding:12px;background:#fff;border-radius:8px;border:1px solid rgba(0,0,0,0.04);margin-top:8px;display:none}
+
+    .reviews{margin-top:10px}
+    .review{background:#fff;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid rgba(0,0,0,0.04)}
+
+    .fbt{margin-top:10px;display:flex;gap:8px;flex-direction:column}
+
+    /* CART DRAWER */
+    .cart-drawer{position:fixed;right:0;top:0;height:100%;width:360px;background:var(--card);box-shadow:-30px 0 60px rgba(8,15,22,0.12);transform:translateX(110%);transition:transform .28s;padding:18px;z-index:130}
+    .cart-drawer.open{transform:translateX(0)}
+    .cart-item{display:flex;gap:10px;align-items:center;padding:10px;border-radius:8px;border:1px solid rgba(0,0,0,0.04);margin-bottom:12px}
+
+    /* LOYALTY POPUP */
+    .loyalty{position:fixed;left:20px;bottom:20px;background:linear-gradient(180deg,var(--green-500),var(--green-600));color:#fff;padding:12px 16px;border-radius:12px;box-shadow:var(--shadow);cursor:pointer;z-index:140}
+    .loyalty-panel{position:fixed;right:20px;bottom:20px;background:var(--card);border-radius:12px;padding:16px;box-shadow:var(--shadow);display:none;z-index:140;width:320px}
+    .progress-wrap{background:#f3f4f6;border-radius:999px;padding:6px}
+    .progress{height:12px;border-radius:999px;background:linear-gradient(90deg,var(--green-500),var(--green-600));width:0%}
+
+    /* Footer */
+    footer{margin-top:28px;padding:28px 20px;background:#08121a;color:#dbeafe;text-align:center;border-top:1px solid rgba(255,255,255,0.03)}
+
+    /* Responsive */
+    @media (max-width:960px){
+      .hero{grid-template-columns:1fr;gap:18px;padding:24px}
+      .hero-right{order:1}
+      .modal-card{grid-template-columns:1fr}
+      .deals{grid-template-columns:1fr}
+      .cart-drawer{width:100%;max-width:420px}
+    }
+    @media (max-width:520px){
+      .hero-left h1{font-size:22px}
+      .slide{min-width:180px}
+    }
+
+    /* small helpers */
+    .muted{color:var(--muted);font-size:14px}
+    .flex{display:flex}
+    .space{flex:1}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="topbar" role="banner">
+    <div class="container nav-inner">
+      <div class="brand" aria-label="Khelshala logo">
+        <span class="k">KHEL</span><span>SHALA</span>
+      </div>
+
+      <div style="display:flex;gap:12px;align-items:center">
+        <div class="search" role="search" aria-label="Search products">
+          <i class="ri-search-line" style="color:var(--muted)"></i>
+          <input id="search" type="search" placeholder="Search bats, gloves, kits..." aria-label="Search input">
+        </div>
+
+        <div class="nav-actions">
+          <button class="icon-btn" title="Loyalty" id="openLoyalty"><i class="ri-coin-line" style="color:var(--green-600)"></i></button>
+          <button class="icon-btn" title="Cart" id="openCartBtn" aria-haspopup="dialog">
+            <i class="ri-shopping-cart-line"></i>
+            <span id="cartCount" class="cart-badge">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" role="main">
+    <!-- HERO -->
+    <section class="hero" aria-label="Hero: Festive sale">
+      <div class="hero-left">
+        <h1><span class="gradient-text">🔥 Festive Cricket Sale</span> – Up to <span style="color:var(--green-600)">30% Off</span>!</h1>
+        <p class="hero-desc">Top brands: MRF, SG, SS. Shop original cricket bats, gloves, balls & protective gear. Free & fast delivery across Nepal.</p>
+        <div class="hero-cta">
+          <button class="btn btn-primary" id="shopNowBtn">Shop Now</button>
+          <button class="btn btn-outline" id="viewDealsBtn">View Deals</button>
+        </div>
+
+        <div class="hero-tags" aria-hidden="true">
+          <div class="pill"><i class="ri-checkbox-circle-line" style="color:var(--green-600)"></i> 100% Original</div>
+          <div class="pill"><i class="ri-truck-line" style="color:var(--green-600)"></i> Fast Delivery</div>
+          <div class="pill"><i class="ri-refresh-line" style="color:var(--green-600)"></i> Easy Returns</div>
+        </div>
+      </div>
+
+      <div class="hero-right" aria-hidden="true">
+        <div class="hero-product">
+          <img src="https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=1200&auto=format&fit=crop" alt="Featured MRF bat product">
+          <div>
+            <h3 style="margin:0">MRF Genius Grand Edition</h3>
+            <p class="muted">English Willow • Lightweight • Pro balance</p>
+            <div style="margin-top:8px" class="flex">
+              <div class="space"></div>
+              <div style="text-align:right">
+                <div style="font-weight:800;font-size:22px">₹22,000 <span style="font-size:14px;color:var(--muted);font-weight:600;text-decoration:line-through;margin-left:8px">₹28,000</span></div>
+                <div style="margin-top:8px" class="muted">Limited stock</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;justify-content:space-between">
+          <div class="muted">Featured bundle:</div>
+          <div style="display:flex;gap:8px">
+            <div class="pill"><i class="ri-star-line" style="color:gold"></i> Top Rated</div>
+            <div class="pill"><i class="ri-time-line" style="color:var(--green-600)"></i> Flash Sale</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <div class="section-title">
+      <h3>Featured Categories</h3>
+      <a href="#categories" class="muted">Explore all</a>
+    </div>
+    <section class="categories" id="categories" aria-label="Featured categories">
+      <div class="cat" data-cat="bats" tabindex="0" role="button">
+        <i class="ri-cricket-line"></i>
+        <div style="font-weight:700">Cricket Bats</div>
+        <div class="muted">MRF, SG, SS</div>
+      </div>
+      <div class="cat" data-cat="gloves" tabindex="0" role="button">
+        <i class="ri-hand-heart-line"></i>
+        <div style="font-weight:700">Gloves</div>
+        <div class="muted">Men & Women</div>
+      </div>
+      <div class="cat" data-cat="balls" tabindex="0" role="button">
+        <i class="ri-checkbox-blank-circle-line"></i>
+        <div style="font-weight:700">Balls</div>
+        <div class="muted">Leather & Practice</div>
+      </div>
+      <div class="cat" data-cat="shoes" tabindex="0" role="button">
+        <i class="ri-footprint-line"></i>
+        <div style="font-weight:700">Shoes</div>
+        <div class="muted">Grip & Comfort</div>
+      </div>
+      <div class="cat" data-cat="helmets" tabindex="0" role="button">
+        <i class="ri-shield-line"></i>
+        <div style="font-weight:700">Helmets</div>
+        <div class="muted">Safety Certified</div>
+      </div>
+      <div class="cat" data-cat="kits" tabindex="0" role="button">
+        <i class="ri-briefcase-line"></i>
+        <div style="font-weight:700">Kits & Bags</div>
+        <div class="muted">Team & Travel</div>
+      </div>
+    </section>
+
+    <!-- TRENDING -->
+    <div class="section-title" style="margin-top:20px">
+      <h3>Trending Products</h3>
+      <div class="muted">Handpicked by our experts</div>
+    </div>
+
+    <div class="slider-wrap" aria-label="Trending products">
+      <div id="trendingSlider" class="slider" role="list"></div>
+    </div>
+
+    <!-- DEALS & WHY BUY -->
+    <div class="deals" style="margin-top:18px">
+      <div class="deal-card">
+        <h4 style="margin:0 0 8px">Khelshala Exclusive Deals</h4>
+        <div class="bundle">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format&fit=crop" alt="bundle" style="width:88px;border-radius:8px">
+          <div>
+            <div style="font-weight:800">Player Grip Combo Pack</div>
+            <div class="muted" style="margin-top:6px">3 grips + 1 pair of gloves • Save 18%</div>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <button class="btn btn-primary" onclick="openProductModal(999,'Grip Combo')">Buy Bundle</button>
+              <button class="btn btn-outline" onclick="addToCartByDetails({id:999,name:'Grip Combo',price:599})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+
+        <hr style="margin:14px 0;border:none;border-top:1px dashed rgba(0,0,0,0.06)">
+
+        <div style="display:flex;gap:12px;align-items:center;justify-content:space-between">
+          <div>
+            <div style="font-weight:700">Flash Sale</div>
+            <div class="muted">Selected items up to 30% off</div>
+          </div>
+          <div>
+            <div class="countdown" aria-hidden="true">
+              <div class="unit" id="cdHours">00</div>
+              <div class="muted" style="font-size:12px">:</div>
+              <div class="unit" id="cdMinutes">00</div>
+              <div class="muted" style="font-size:12px">:</div>
+              <div class="unit" id="cdSeconds">00</div>
+            </div>
+            <div class="muted" style="text-align:right;font-size:12px;margin-top:6px">Ends soon</div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="deal-card">
+        <h4 style="margin:0 0 8px">Why buy from Khelshala?</h4>
+        <div class="badges">
+          <div class="badge"><i class="ri-shield-check-line" style="color:var(--green-600)"></i><div style="margin-left:6px"><div style="font-weight:700">100% Original Gear</div><div class="muted">Authentic brands</div></div></div>
+          <div class="badge"><i class="ri-truck-line" style="color:var(--green-600)"></i><div style="margin-left:6px"><div style="font-weight:700">Fast Delivery</div><div class="muted">Within 2-5 days</div></div></div>
+          <div class="badge"><i class="ri-refresh-line" style="color:var(--green-600)"></i><div style="margin-left:6px"><div style="font-weight:700">Easy Return</div><div class="muted">7-day returns</div></div></div>
+          <div class="badge"><i class="ri-money-dollar-circle-line" style="color:var(--green-600)"></i><div style="margin-left:6px"><div style="font-weight:700">Cash on Delivery</div><div class="muted">Secure payment</div></div></div>
+          <div class="badge"><i class="ri-lock-line" style="color:var(--green-600)"></i><div style="margin-left:6px"><div style="font-weight:700">Secure Payment</div><div class="muted">Encrypted checkout</div></div></div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- BLOGS -->
+    <div class="section-title" style="margin-top:20px">
+      <h3>From the Khelshala Blog</h3>
+      <a href="#blogs" class="muted">Read more</a>
+    </div>
+    <section class="blogs" id="blogs" aria-label="Khelshala blogs">
+      <article class="blog" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1606213726631-0a3be0d6e6a5?q=80&w=800&auto=format&fit=crop" alt="" style="border-radius:8px;margin-bottom:10px">
+        <h4 style="margin:0 0 6px">How to choose the right cricket bat</h4>
+        <div class="muted">English Willow vs Kashmir Willow — what suits your game?</div>
+      </article>
+      <article class="blog" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1526403224742-8b6d6d1a0f08?q=80&w=800&auto=format&fit=crop" alt="" style="border-radius:8px;margin-bottom:10px">
+        <h4 style="margin:0 0 6px">Best gear for beginners</h4>
+        <div class="muted">A starter kit checklist for aspiring cricketers.</div>
+      </article>
+      <article class="blog" tabindex="0">
+        <img src="https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=800&auto=format&fit=crop" alt="" style="border-radius:8px;margin-bottom:10px">
+        <h4 style="margin:0 0 6px">English Willow vs Kashmir Willow</h4>
+        <div class="muted">Materials, pricing, and performance explained.</div>
+      </article>
+    </section>
+
+    <!-- Footer CTA -->
+    <div style="margin-top:26px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between">
+      <div>
+        <h3 style="margin:0">Join Khelshala Loyalty & Earn Points</h3>
+        <div class="muted">Get rewards, exclusive offers & faster shipping.</div>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn btn-outline" id="learnMoreLoyalty">Learn more</button>
+        <button class="btn btn-primary" id="joinLoyalty">Join Now</button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Product Modal (acts as product page) -->
+  <div id="productModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card" role="document" aria-labelledby="productTitle">
+      <div>
+        <div class="gallery">
+          <div class="imgbox" id="mainImageWrap">
+            <img id="mainImage" src="" alt="Product image" style="width:100%;border-radius:8px">
+          </div>
+
+          <div class="thumbs" id="thumbs"></div>
+
+          <div style="margin-top:10px">
+            <div class="video-placeholder" id="demoVideo">
+              <div style="text-align:center">
+                <div style="font-weight:700">Demo Video</div>
+                <div class="muted" style="font-size:14px;margin-top:6px">(placeholder — add MP4 URL in code)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3 id="productTitle">Product</h3>
+          <button class="icon-btn" id="closeModal" aria-label="Close product details"><i class="ri-close-line"></i></button>
+        </div>
+
+        <div style="margin-top:10px">
+          <div style="font-weight:800;font-size:20px" id="productPrice">₹0</div>
+          <div class="muted" id="productTag" style="margin-top:6px">Top rated</div>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn btn-primary" id="buyNowBtn">Buy Now</button>
+            <button class="btn btn-outline" id="addToCartBtn">Add to Cart</button>
+          </div>
+
+          <div style="margin-top:14px" class="specs">
+            <h4 style="margin:0 0 8px">Specifications</h4>
+            <table id="specTable">
+              <!-- filled by JS -->
+            </table>
+          </div>
+
+          <div class="accordion">
+            <div class="acc-head" data-acc="sizeGuide">
+              <div>Size / Weight Guide</div>
+              <div><i class="ri-arrow-down-s-line"></i></div>
+            </div>
+            <div class="acc-body" id="sizeGuide">
+              <p class="muted">Choose bat weight depending on comfort: 1lb 8oz — lightweight; 2lb+ — heavy hitters. Junior sizes available for kids.</p>
+            </div>
+          </div>
+
+          <div class="reviews" aria-live="polite">
+            <h4 style="margin:12px 0 8px">Customer Reviews</h4>
+            <div class="review"><strong>Rohan</strong> <span class="muted"> — ⭐⭐⭐⭐⭐</span><div class="muted" style="font-size:13px;margin-top:6px">Great balance and pickup — perfect for match play.</div></div>
+            <div class="review"><strong>Anita</strong> <span class="muted"> — ⭐⭐⭐⭐</span><div class="muted" style="font-size:13px;margin-top:6px">Solid willow, needs light knocking in.</div></div>
+          </div>
+
+          <div class="fbt">
+            <h4 style="margin:8px 0">Frequently bought together</h4>
+            <label><input type="checkbox" class="fbt-checkbox" data-id="201" checked> Grip Pack — ₹199</label>
+            <label><input type="checkbox" class="fbt-checkbox" data-id="202" checked> Bat Cover — ₹499</label>
+            <div style="margin-top:8px;display:flex;gap:8px">
+              <button class="btn btn-primary" id="addFBT">Add selected to cart</button>
+              <button class="btn btn-outline" id="checkoutFBT">Checkout</button>
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Cart Drawer -->
+  <div id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <h3 style="margin:0">Your Cart</h3>
+      <button class="icon-btn" id="closeCart"><i class="ri-close-line"></i></button>
+    </div>
+    <div id="cartItemsWrap" style="overflow:auto;padding-bottom:10px;height:60vh"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:18px;border-top:1px dashed rgba(0,0,0,0.06);background:linear-gradient(180deg,rgba(255,255,255,0.4),rgba(255,255,255,0.9))">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div class="muted">Total</div>
+        <div style="font-weight:800" id="cartTotal">₹0</div>
+      </div>
+      <div style="margin-top:10px;display:flex;gap:8px">
+        <button class="btn btn-primary" id="checkoutBtn">Checkout</button>
+        <button class="btn btn-outline" id="continueBtn">Continue Shopping</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loyalty Popup & Panel -->
+  <div id="loyaltyBtn" class="loyalty" role="button" aria-haspopup="dialog">
+    <i class="ri-gift-line" style="font-size:18px;margin-right:8px;vertical-align:middle"></i> Rewards
+  </div>
+  <div id="loyaltyPanel" class="loyalty-panel" role="dialog" aria-modal="false" aria-hidden="true">
+    <div style="display:flex;justify-content:space-between;align-items:center">
+      <h4 style="margin:0">Khelshala Loyalty</h4>
+      <button class="icon-btn" id="closeLoyalty"><i class="ri-close-line"></i></button>
+    </div>
+    <p class="muted" style="margin-top:8px">Earn points on every purchase and climb through membership tiers.</p>
+    <div style="margin-top:12px">
+      <div style="display:flex;justify-content:space-between"><div>Silver</div><div>0 - 999 pts</div></div>
+      <div style="display:flex;justify-content:space-between"><div>Gold</div><div>1,000 - 4,999 pts</div></div>
+      <div style="display:flex;justify-content:space-between"><div>Pro</div><div>5,000+ pts</div></div>
+    </div>
+
+    <div style="margin-top:12px">
+      <div style="font-weight:700">Your Progress</div>
+      <div class="progress-wrap" style="margin-top:8px">
+        <div class="progress" id="loyaltyProgress"></div>
+      </div>
+      <div class="muted" style="margin-top:6px" id="loyaltyText">You are 20% to Gold</div>
+    </div>
+
+    <div style="margin-top:12px;display:flex;gap:8px;">
+      <button class="btn btn-primary" id="joinBtn">Join Now</button>
+      <button class="btn btn-outline" id="referBtn">Refer & Earn</button>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container" style="display:flex;flex-direction:column;gap:8px;align-items:center">
+      <div style="font-weight:700">Khelshala — Nepal's Cricket Store</div>
+      <div class="muted">Top brands • Custom jersey printing • Fast delivery</div>
+      <div style="margin-top:8px" class="muted">© <span id="year"></span> Khelshala • All rights reserved</div>
+    </div>
+  </footer>
+
+  <script>
+    // simple dataset for trending products (6-8 items)
+    const PRODUCTS = [
+      {id:1,name:'MRF Genius Grand',price:22000,imgs:[
+        'https://images.unsplash.com/photo-1521412644187-c49fa049e84d?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1607804707939-1f6b3776b2be?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1505443696406-6f4f0a9c97b7?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1517649763962-0c623066013b?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:true, discount:22, brand:'MRF', willow:'English'},
+      {id:2,name:'SG Sunny Pro',price:18000,imgs:[
+        'https://images.unsplash.com/photo-1521410843961-882092a5c60e?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1541963463532-d68292c34b19?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1564767609342-620cb19b2357?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:true, discount:12, brand:'SG', willow:'Kashmir'},
+      {id:3,name:'SS Master 9000',price:15000,imgs:[
+        'https://images.unsplash.com/photo-1505666287802-931dc83948e8?q=80&w=1200&auto=format&fit=crop',
+        'https://images.unsplash.com/photo-1485965120184-e220f721d03e?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:false, discount:10, brand:'SS', willow:'English'},
+      {id:4,name:'Ultra Grip Gloves',price:3500,imgs:[
+        'https://images.unsplash.com/photo-1544161515-4ab4a9a2dbd2?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:false, discount:15, brand:'SG', willow:'N/A'},
+      {id:5,name:'Pro Leather Ball (Pack of 3)',price:1200,imgs:[
+        'https://images.unsplash.com/photo-1526403224742-8b6d6d1a0f08?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:true, discount:8, brand:'Khelshala', willow:'N/A'},
+      {id:6,name:'Impact Helmet',price:4200,imgs:[
+        'https://images.unsplash.com/photo-1542293733-8f0f9f90f2aa?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:false, discount:18, brand:'SafeHead', willow:'N/A'},
+      {id:7,name:'Performance Shoes',price:6200,imgs:[
+        'https://images.unsplash.com/photo-1508669232496-1d3d6f2d6bd7?q=80&w=1200&auto=format&fit=crop'
+      ], topRated:true, discount:25, brand:'RunPro', willow:'N/A'}
+    ];
+
+    // fill trending slider
+    const trendingWrap = document.getElementById('trendingSlider');
+    PRODUCTS.forEach(p=>{
+      const el = document.createElement('div');
+      el.className = 'slide';
+      el.setAttribute('role','listitem');
+      el.innerHTML = `
+        ${p.discount? `<div class="discount">-${p.discount}%</div>` : ''}
+        ${p.topRated? `<div class="toprated">Top Rated</div>` : ''}
+        <div class="imgbox"><img src="${p.imgs[0]}" alt="${p.name}"></div>
+        <h4>${p.name}</h4>
+        <div class="muted small">${p.brand} • ${p.willow}</div>
+        <div style="margin-top:6px;display:flex;justify-content:space-between;align-items:center">
+          <div class="price">₹${(p.price).toLocaleString()}</div>
+          <div class="small">Rating: ${p.topRated? '4.8' : '4.3'} ⭐</div>
+        </div>
+        <div class="actions" style="margin-top:8px">
+          <button class="btn btn-outline" onclick="openProductModal(${p.id})">View</button>
+          <button class="btn btn-primary" onclick="addToCart(${p.id})">Add</button>
+        </div>
+      `;
+      trendingWrap.appendChild(el);
+    });
+
+    // autoplay slider: simple scroll left/right
+    let sliderInterval;
+    function startSliderAuto(){
+      const slider = document.querySelector('.slider');
+      sliderInterval = setInterval(()=>{
+        slider.scrollBy({left:230,behavior:'smooth'});
+        // loop back
+        if(slider.scrollLeft + slider.clientWidth >= slider.scrollWidth - 10){
+          setTimeout(()=> slider.scrollTo({left:0,behavior:'smooth'}),600);
+        }
+      },2500);
+    }
+    function stopSliderAuto(){ clearInterval(sliderInterval) }
+    startSliderAuto();
+    document.querySelector('.slider').addEventListener('mouseenter', stopSliderAuto);
+    document.querySelector('.slider').addEventListener('mouseleave', startSliderAuto);
+
+    // CART implementation
+    let CART = [];
+    function updateCartUI(){
+      document.getElementById('cartCount').innerText = CART.reduce((a,b)=>a+b.qty,0);
+      const wrap = document.getElementById('cartItemsWrap');
+      wrap.innerHTML = '';
+      if(CART.length===0){
+        wrap.innerHTML = '<div class="muted">Your cart is empty.</div>';
+      }
+      let total = 0;
+      CART.forEach(item=>{
+        total += item.price * item.qty;
+        const div = document.createElement('div');
+        div.className = 'cart-item';
+        div.innerHTML = `
+          <img src="${item.img||''}" alt="" style="width:64px;height:64px;object-fit:cover;border-radius:8px">
+          <div style="flex:1">
+            <div style="font-weight:700">${item.name}</div>
+            <div class="muted" style="font-size:13px">₹${item.price.toLocaleString()} x ${item.qty}</div>
+            <div style="margin-top:6px;display:flex;gap:8px;align-items:center">
+              <button class="btn btn-outline" onclick="changeQty(${item.id}, -1)">-</button>
+              <div style="padding:6px 10px;background:#f3f4f6;border-radius:6px">${item.qty}</div>
+              <button class="btn btn-outline" onclick="changeQty(${item.id}, 1)">+</button>
+              <button class="icon-btn" style="margin-left:auto;color:#ef4444" onclick="removeFromCart(${item.id})"><i class="ri-delete-bin-line"></i></button>
+            </div>
+          </div>
+        `;
+        wrap.appendChild(div);
+      });
+      document.getElementById('cartTotal').innerText = '₹' + total.toLocaleString();
+    }
+    function addToCart(id){
+      const p = PRODUCTS.find(x=>x.id===id);
+      if(!p) return;
+      const existing = CART.find(i=>i.id===id);
+      if(existing) existing.qty++;
+      else CART.push({id:p.id,name:p.name,price:p.price,qty:1,img:p.imgs[0]});
+      updateCartUI();
+    }
+    function addToCartByDetails(obj){
+      const existing = CART.find(i=>i.id===obj.id);
+      if(existing) existing.qty++;
+      else CART.push({...obj,qty:1,img:obj.img||''});
+      updateCartUI();
+    }
+    function changeQty(id,delta){
+      const it = CART.find(i=>i.id===id);
+      if(!it) return;
+      it.qty += delta;
+      if(it.qty <= 0) CART = CART.filter(i=>i.id!==id);
+      updateCartUI();
+    }
+    function removeFromCart(id){
+      CART = CART.filter(i=>i.id!==id);
+      updateCartUI();
+    }
+
+    // Cart drawer toggles
+    const cartDrawer = document.getElementById('cartDrawer');
+    document.getElementById('openCartBtn').addEventListener('click', ()=> { cartDrawer.classList.add('open'); cartDrawer.setAttribute('aria-hidden','false'); });
+    document.getElementById('closeCart').addEventListener('click', ()=> { cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden','true'); });
+    document.getElementById('continueBtn').addEventListener('click', ()=> { cartDrawer.classList.remove('open'); cartDrawer.setAttribute('aria-hidden','true'); });
+
+    // PRODUCT MODAL logic (acts as product page)
+    const modal = document.getElementById('productModal');
+    const mainImage = document.getElementById('mainImage');
+    const thumbs = document.getElementById('thumbs');
+    const specTable = document.getElementById('specTable');
+    const productTitle = document.getElementById('productTitle');
+    const productPrice = document.getElementById('productPrice');
+    const productTag = document.getElementById('productTag');
+    let currentProduct = null;
+
+    function openProductModal(id, customName){
+      // if id not found, show custom product (bundle)
+      currentProduct = PRODUCTS.find(x=>x.id===id) || {id, name: customName||'Product', price:599, imgs:['https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop'],brand:'Khelshala', willow:'N/A'};
+      productTitle.innerText = currentProduct.name;
+      productPrice.innerText = '₹' + currentProduct.price.toLocaleString();
+      productTag.innerText = currentProduct.topRated? 'Top Rated' : 'Featured';
+      // fill images
+      thumbs.innerHTML = '';
+      currentProduct.imgs.forEach((src, i)=>{
+        const t = document.createElement('img');
+        t.src = src; t.alt = currentProduct.name + ' ' + (i+1);
+        t.addEventListener('click', ()=>{ mainImage.src = src; document.querySelectorAll('#thumbs img').forEach(x=>x.classList.remove('active')); t.classList.add('active'); });
+        if(i===0){ t.classList.add('active'); mainImage.src = src; }
+        thumbs.appendChild(t);
+      });
+      // specs
+      specTable.innerHTML = `
+        <tr><td style="font-weight:700">Brand</td><td>${currentProduct.brand||'Khelshala'}</td></tr>
+        <tr><td style="font-weight:700">Willow</td><td>${currentProduct.willow||'English'}</td></tr>
+        <tr><td style="font-weight:700">Weight</td><td>2lb - 2lb 8oz (varies by size)</td></tr>
+        <tr><td style="font-weight:700">Sizes</td><td>Short Handle (SH), Long Handle (LH)</td></tr>
+        <tr><td style="font-weight:700">Handle</td><td>Round / Oval</td></tr>
+        <tr><td style="font-weight:700">Warranty</td><td>6 months manufacturer</td></tr>
+      `;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    document.getElementById('closeModal').addEventListener('click', ()=> { modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); });
+    document.getElementById('addToCartBtn').addEventListener('click', ()=> { addToCart(currentProduct.id); alert('Added to cart'); });
+    document.getElementById('buyNowBtn').addEventListener('click', ()=> { addToCart(currentProduct.id); window.location.hash = '#checkout'; alert('Proceed to checkout (demo)'); });
+
+    // FBT - frequently bought together
+    document.getElementById('addFBT').addEventListener('click', ()=>{
+      document.querySelectorAll('.fbt-checkbox').forEach(cb=>{
+        if(cb.checked){
+          const id = parseInt(cb.dataset.id);
+          addToCartByDetails({id, name: (id===201? 'Grip Pack' : 'Bat Cover'), price: id===201?199:499, img:''});
+        }
+      });
+      alert('Selected items added to cart');
+    });
+
+    // Flash sale countdown (set end date 24 hours from now)
+    const cdHours = document.getElementById('cdHours');
+    const cdMinutes = document.getElementById('cdMinutes');
+    const cdSeconds = document.getElementById('cdSeconds');
+    let saleEnd = new Date();
+    saleEnd.setHours(saleEnd.getHours() + 24);
+    function updateCountdown(){
+      const now = new Date();
+      const diff = Math.max(0, saleEnd - now);
+      const hrs = Math.floor(diff / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
+      cdHours.innerText = String(hrs).padStart(2,'0');
+      cdMinutes.innerText = String(mins).padStart(2,'0');
+      cdSeconds.innerText = String(secs).padStart(2,'0');
+    }
+    setInterval(updateCountdown, 500);
+    updateCountdown();
+
+    // Loyalty UI and progress
+    const loyaltyBtn = document.getElementById('loyaltyBtn');
+    const loyaltyPanel = document.getElementById('loyaltyPanel');
+    const openLoyalty = document.getElementById('openLoyalty');
+    const closeLoyalty = document.getElementById('closeLoyalty');
+    const loyaltyProgress = document.getElementById('loyaltyProgress');
+    const loyaltyText = document.getElementById('loyaltyText');
+    let userPoints = 420; // example
+    function updateLoyaltyUI(){
+      const pct = Math.min(100, Math.round((userPoints / 1000) * 100));
+      loyaltyProgress.style.width = pct + '%';
+      loyaltyText.innerText = `You have ${userPoints} pts • ${pct}% to Gold`;
+    }
+    loyaltyBtn.addEventListener('click', ()=> {
+      loyaltyPanel.style.display = loyaltyPanel.style.display === 'block' ? 'none' : 'block';
+    });
+    openLoyalty.addEventListener('click', ()=> { loyaltyPanel.style.display='block'; });
+    closeLoyalty.addEventListener('click', ()=> { loyaltyPanel.style.display='none'; });
+    document.getElementById('joinBtn').addEventListener('click', ()=> { alert('Joined Loyalty — +100 pts!'); userPoints += 100; updateLoyaltyUI(); });
+    document.getElementById('referBtn').addEventListener('click', ()=> { prompt('Share this referral code with a friend:', 'KHEL-REF-2025'); });
+
+    updateLoyaltyUI();
+
+    // events for hero CTA
+    document.getElementById('shopNowBtn').addEventListener('click', ()=> window.scrollTo({top: document.getElementById('categories').offsetTop - 60, behavior:'smooth'}));
+    document.getElementById('viewDealsBtn').addEventListener('click', ()=> window.scrollTo({top: document.querySelector('.deals').offsetTop - 60, behavior:'smooth'}));
+    document.getElementById('learnMoreLoyalty').addEventListener('click', ()=> loyaltyPanel.style.display='block');
+    document.getElementById('joinLoyalty').addEventListener('click', ()=> { document.getElementById('joinBtn').click() });
+
+    // simple product selection by category (filter)
+    document.querySelectorAll('.cat').forEach(el=>{
+      el.addEventListener('click', ()=> {
+        // quick behavior: scroll to trending and show alert demo
+        window.scrollTo({top: document.getElementById('trendingSlider').offsetTop - 60, behavior:'smooth'});
+      });
+      el.addEventListener('keypress', (e)=> { if(e.key === 'Enter') el.click(); });
+    });
+
+    // checkout demo
+    document.getElementById('checkoutBtn').addEventListener('click', ()=> {
+      if(CART.length===0){ alert('Cart empty'); return; }
+      alert('Checkout demo — order placed!\nOrder total: ' + document.getElementById('cartTotal').innerText);
+      CART = [];
+      updateCartUI();
+      document.getElementById('cartDrawer').classList.remove('open');
+    });
+
+    // simple search
+    document.getElementById('search').addEventListener('keyup', (e)=>{
+      const q = e.target.value.toLowerCase();
+      document.querySelectorAll('.slide').forEach((slide, idx)=>{
+        const name = PRODUCTS[idx] ? PRODUCTS[idx].name.toLowerCase() : '';
+        slide.style.display = name.includes(q) ? '' : 'none';
+      });
+    });
+
+    // set year
+    document.getElementById('year').innerText = new Date().getFullYear();
+
+    // Accessibility: close modal on escape
+    document.addEventListener('keydown', (e)=> {
+      if(e.key === 'Escape'){
+        modal.classList.remove('open');
+        cartDrawer.classList.remove('open');
+        loyaltyPanel.style.display = 'none';
+      }
+    });
+
+    // expose functions used inline
+    window.openProductModal = openProductModal;
+    window.addToCart = addToCart;
+    window.addToCartByDetails = addToCartByDetails;
+    window.openCart = ()=> { document.getElementById('openCartBtn').click(); };
+    window.removeFromCart = removeFromCart;
+    window.changeQty = changeQty;
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Icons of Nepal Cricket</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Poppins:wght@300;400;600&family=Anton&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- 1. THEME VARIABLES (NPL DARK) --- */
+        :root {
+            --primary: #dc143c;       /* NPL Crimson */
+            --primary-glow: rgba(220, 20, 60, 0.5);
+            --secondary: #0D47A1;     /* Nepal Blue */
+            --gold: #FFD700;          /* Legend Gold */
+            --dark: #050505;          /* Deep Black */
+            --card-bg: #141414;       /* Card Grey */
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --border: rgba(255,255,255,0.1);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: var(--dark); 
+            color: var(--text-main); 
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; text-transform: uppercase; }
+
+        /* --- 2. ANIMATIONS --- */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes shine { 
+            0% { background-position: -200% center; } 
+            100% { background-position: 200% center; } 
+        }
+
+        /* --- 3. NAVBAR (Glassmorphism) --- */
+        .navbar {
+            background: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo-text { 
+            font-size: 28px; font-weight: 900; color: #fff; letter-spacing: 1px;
+            font-family: 'Anton', sans-serif;
+        }
+        .logo-text span { color: var(--primary); }
+
+        .nav-links { list-style: none; display: flex; gap: 30px; }
+        .nav-links li a { 
+            color: #ccc; text-decoration: none; font-weight: 600; font-size: 14px; 
+            transition: 0.3s; position: relative; text-transform: uppercase;
+        }
+        .nav-links li a:hover { color: var(--gold); text-shadow: 0 0 10px var(--gold); }
+        .nav-links li a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--primary); transition: 0.3s;
+        }
+        .nav-links li a:hover::after { width: 100%; }
+
+        /* --- 4. HERO HEADER (Cinematic) --- */
+        .page-header {
+            position: relative;
+            text-align: center;
+            padding: 120px 20px 80px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), var(--dark)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .page-header h1 {
+            font-size: 4rem; letter-spacing: 2px; font-weight: 900;
+            margin-bottom: 20px; text-shadow: 0 5px 15px rgba(0,0,0,0.8);
+            animation: fadeInUp 1s ease;
+            background: linear-gradient(45deg, #fff, #ccc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .page-header p {
+            font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: #ddd;
+            animation: fadeInUp 1s ease 0.3s backwards;
+            border-left: 3px solid var(--gold); padding-left: 15px;
+        }
+
+        /* --- 5. GRID & SECTIONS --- */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px 80px; }
+
+        .section-title {
+            font-size: 2.5rem; margin: 80px 0 40px; color: var(--text-main);
+            position: relative; display: inline-block;
+            text-shadow: 0 0 20px rgba(220, 20, 60, 0.3);
+        }
+        .section-title::after {
+            content: ''; display: block; width: 60%; height: 4px; 
+            background: var(--primary); margin-top: 10px; border-radius: 2px;
+        }
+        .section-title span { color: var(--gold); }
+
+        .player-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px;
+        }
+
+        /* --- 6. PLAYER CARD (Hero Style) --- */
+        .player-card {
+            background: var(--card-bg); border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border); position: relative;
+            transition: var(--transition);
+            opacity: 0; animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Stagger Animation */
+        .player-card:nth-child(1) { animation-delay: 0.1s; }
+        .player-card:nth-child(2) { animation-delay: 0.2s; }
+        .player-card:nth-child(3) { animation-delay: 0.3s; }
+        .player-card:nth-child(4) { animation-delay: 0.4s; }
+        .player-card:nth-child(5) { animation-delay: 0.5s; }
+        .player-card:nth-child(6) { animation-delay: 0.6s; }
+
+        /* Hover Effects */
+        .player-card:hover { 
+            transform: translateY(-15px); 
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.2);
+        }
+
+        .image-wrapper { 
+            height: 350px; overflow: hidden; position: relative; 
+            border-bottom: 4px solid var(--primary);
+        }
+        
+        .image-wrapper::after {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to top, var(--card-bg), transparent 50%);
+        }
+
+        .player-card img {
+            width: 100%; height: 100%; object-fit: cover; object-position: top;
+            transition: transform 0.6s ease;
+            filter: grayscale(20%); /* Artistic touch */
+        }
+        .player-card:hover img { transform: scale(1.1); filter: grayscale(0%); }
+
+        /* Badges */
+        .status-badge {
+            position: absolute; top: 15px; right: 15px; padding: 6px 15px;
+            border-radius: 50px; font-size: 0.75rem; font-weight: 800;
+            text-transform: uppercase; z-index: 2; letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        .status-legend { 
+            background: linear-gradient(135deg, #FFD700, #FDB931); 
+            color: #000; 
+        }
+        .status-active { 
+            background: linear-gradient(135deg, var(--primary), #b01030); 
+            color: #fff; 
+        }
+
+        /* Card Content */
+        .player-info { padding: 25px; position: relative; }
+        
+        .player-role { 
+            font-size: 0.85rem; font-weight: 700; color: var(--gold); 
+            text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; 
+        }
+        
+        .player-name { 
+            font-size: 1.8rem; font-weight: 900; color: #fff; margin-bottom: 5px; 
+            line-height: 1.1; font-family: 'Anton', sans-serif; letter-spacing: 0.5px;
+        }
+        
+        .career-time {
+            display: inline-block; background: rgba(255,255,255,0.1); 
+            padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; 
+            color: #ccc; margin-bottom: 20px; font-family: monospace;
+        }
+
+        /* Achievements Box */
+        .achievements-box {
+            background: linear-gradient(135deg, #1a1a1a, #222); 
+            padding: 15px; border-radius: 10px; border: 1px solid #333;
+            transition: 0.3s;
+        }
+        .player-card:hover .achievements-box { border-color: var(--gold); background: #222; }
+
+        .achievements-box h4 { 
+            font-size: 0.8rem; margin-bottom: 8px; color: var(--primary); 
+            display: flex; align-items: center; gap: 8px; 
+        }
+        .achievements-box p { font-size: 0.9rem; color: #ddd; line-height: 1.5; margin: 0; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .page-header h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; margin-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo-text">KHEL<span>SHALA</span></div>
+        <ul class="nav-links">
+            <li><a href="/FTD.html">Home</a></li>
+            <li><a href="news.html">News</a></li>
+            <li><a href="/history.html">History</a></li>
+            <li><a href="/records.html">Records</a></li>
+            <li><a href="/player.html" style="color:var(--primary);">Players</a></li>
+            <li><a href="/NPL.html">NPL</a></li>
+            <li><a href="/store.html">Store</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <h1>Guardians of Legacy</h1>
+        <p>“Nepal’s legends carrying the hope of millions with every swing and every stride.”</p>
+    </header>
+
+    <main class="container">
+        
+        <!-- SECTION 1: LEGENDS -->
+        <h2 class="section-title">The <span>Pioneers</span> (Legends)</h2>
+        <div class="player-grid">
+            
+            <!-- Paras Khadka -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-legend">Legend</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/285000/285038.jpg" alt="Paras Khadka">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Captain • All-Rounder</div>
+                    <h3 class="player-name">Paras Khadka</h3>
+                    <div class="career-time">2004 — 2021</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-crown"></i> Achievements</h4>
+                        <p>Led Nepal to ODI status (2018). First Nepali ODI & T20I Centurion.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shakti Gauchan -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-legend">Legend</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/153600/153645.jpg" alt="Shakti Gauchan">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Left-Arm Spinner</div>
+                    <h3 class="player-name">Shakti Gauchan</h3>
+                    <div class="career-time">2002 — 2018</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-magic"></i> Magic Moment</h4>
+                        <p>Incredible 10-1-2-3 spell vs Malaysia. Hat-trick vs Denmark (2012).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mehboob Alam -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-legend">Legend</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/110700/110787.jpg" alt="Mehboob Alam">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Left-Arm Pacer</div>
+                    <h3 class="player-name">Mehboob Alam</h3>
+                    <div class="career-time">2000 — 2017</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-globe"></i> World Record</h4>
+                        <p>Guinness Record: Took all 10 wickets (10-12) in an inning vs Mozambique.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Basant Regmi -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-legend">Legend</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/204800/204899.jpg" alt="Basant Regmi">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">The Crisis Man</div>
+                    <h3 class="player-name">Basant Regmi</h3>
+                    <div class="career-time">2006 — 2019</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-bolt"></i> Impact</h4>
+                        <p>First to 100 Wickets in WCL. Known for breaking crucial partnerships.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sharad Vesawkar -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-legend">Legend</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/262700/262795.jpg" alt="Sharad Vesawkar">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">The Finisher</div>
+                    <h3 class="player-name">Sharad Vesawkar</h3>
+                    <div class="career-time">2004 — 2021</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-fire"></i> Highlight</h4>
+                        <p>Hero of 2014 WT20 Qualifiers. "Mr. Finisher" of Nepali Cricket.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Binod Das -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-legend">Legend</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/111000/111001.jpg" alt="Binod Das">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Former Captain • Pacer</div>
+                    <h3 class="player-name">Binod Das</h3>
+                    <div class="career-time">2000 — 2012</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-star"></i> Leadership</h4>
+                        <p>Led Nepal to Plate Victory in U19 WC. ACC Trophy Finalist.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECTION 2: CURRENT STARS -->
+        <h2 class="section-title">Golden <span>Generation</span> (Active)</h2>
+        <div class="player-grid">
+
+            <!-- Sandeep Lamichhane -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-active">Superstar</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/339200/339234.jpg" alt="Sandeep Lamichhane">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Leg Spin Wizard</div>
+                    <h3 class="player-name">Sandeep Lamichhane</h3>
+                    <div class="career-time">2016 — Present</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-globe"></i> Global Icon</h4>
+                        <p>First Nepali in IPL/BBL. Fastest to 100 ODI Wickets (42 matches).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rohit Paudel -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-active">Captain</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/335600/335661.jpg" alt="Rohit Paudel">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Skipper • Batsman</div>
+                    <h3 class="player-name">Rohit Paudel</h3>
+                    <div class="career-time">2018 — Present</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-bolt"></i> Record Breaker</h4>
+                        <p>Youngest male to score International 50. Leading ODI run-scorer.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dipendra Singh Airee -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-active">The Tiger</span>
+                    <img src="https://wisden.com/wp-content/uploads/2023/09/Dipendra-Singh-Airee-e1695804365773.jpg" alt="Dipendra Singh Airee">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">All-Rounder • Fielder</div>
+                    <h3 class="player-name">Dipendra Singh Airee</h3>
+                    <div class="career-time">2017 — Present</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-fire"></i> World Record</h4>
+                        <p>Fastest T20I Fifty in history (9 Balls vs Mongolia, 2023). 6 Sixes in an over.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kushal Malla -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-active">Hitter</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/368800/368897.jpg" alt="Kushal Malla">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Power Hitter</div>
+                    <h3 class="player-name">Kushal Malla</h3>
+                    <div class="career-time">2019 — Present</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-bomb"></i> World Record</h4>
+                        <p>Fastest T20I Century in history (34 Balls vs Mongolia, 2023).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sompal Kami -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-active">Pacer</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/328700/328704.jpg" alt="Sompal Kami">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">Fast Bowler</div>
+                    <h3 class="player-name">Sompal Kami</h3>
+                    <div class="career-time">2014 — Present</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-bolt"></i> Speedster</h4>
+                        <p>Fastest Nepali bowler (140kph). Batting heroics vs India (Asia Cup).</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Karan KC -->
+            <div class="player-card">
+                <div class="image-wrapper">
+                    <span class="status-badge status-active">Clutch</span>
+                    <img src="https://p.imgci.com/db/PICTURES/CMS/273300/273373.jpg" alt="Karan KC">
+                </div>
+                <div class="player-info">
+                    <div class="player-role">The Miracle Man</div>
+                    <h3 class="player-name">Karan KC</h3>
+                    <div class="career-time">2015 — Present</div>
+                    <div class="achievements-box">
+                        <h4><i class="fas fa-magic"></i> Iconic Moment</h4>
+                        <p>42* vs Canada (2018) to save Nepal's ODI status by 1 wicket.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>
